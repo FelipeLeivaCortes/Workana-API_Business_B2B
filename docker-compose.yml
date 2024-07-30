@@ -1,0 +1,25 @@
+services:
+  mariadb:
+    container_name: mariadb-database
+    image: mariadb:10.5.25
+    volumes:
+      - ./database/mariadb:/var/lib/mysql
+    ports:
+      - ${DB_PORT}:3306
+    environment:
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${DB_DATABASE}
+    restart: always
+
+  phpmyadmin:
+    depends_on:
+      - mariadb
+    container_name: phpmyadmin
+    image: phpmyadmin:5.2.0-apache
+    ports:
+      - ${PHPMYADMIN_PORT}:80
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
