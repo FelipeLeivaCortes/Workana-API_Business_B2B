@@ -1,7 +1,7 @@
 const companyModel = require('./../models/companies');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const entity = "Empresa";
+const { CompanyMessages } = require('./../utils/handleMessages');
 
 const getCompanies = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ const getCompanies = async (req, res) => {
         res.send({companies});
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}s`, error);
+        handleRequestError(res, 500, CompanyMessages.getCompanies.handleError, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getCompany = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para buscar ${entity}`);
+            return handleRequestError(res, 400, CompanyMessages.getCompany.notParameters);
         }
 
         const company = await companyModel.findByPk(id);
@@ -27,11 +27,11 @@ const getCompany = async (req, res) => {
             res.send({company});
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, CompanyMessages.getCompany.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}`, error);
+        handleRequestError(res, 500, CompanyMessages.getCompany.handleError, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createCompany = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, `Faltan parámetros para registrar ${entity}`);
+            return handleRequestError(res, 400, CompanyMessages.createCompany.notParameters);
         }
 
         const company = await companyModel.create(body);
@@ -49,12 +49,12 @@ const createCompany = async (req, res) => {
             res.status(201).send({ company });
 
         } else {
-            handleRequestError(res, 404, `${entity} no registrada`);
+            handleRequestError(res, 404, CompanyMessages.createCompany.notRegistered);
         }
 
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al registrar ${entity}`, error);
+        handleRequestError(res, 500, CompanyMessages.createCompany.handleError, error);
     }
 };
 
@@ -64,7 +64,7 @@ const updateCompany = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, `Faltan parámetros para actualizar ${entity}`);
+            return handleRequestError(res, 400, CompanyMessages.updateCompany.notParameters);
         }
 
         const [updatedRows] = await companyModel.update(body, {
@@ -76,11 +76,11 @@ const updateCompany = async (req, res) => {
             res.status(200).send({ company: updatedCompany });
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, CompanyMessages.updateCompany.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al actualizar ${entity}`, error);
+        handleRequestError(res, 500, CompanyMessages.updateCompany.handleError, error);
     }
 };
 
@@ -89,21 +89,21 @@ const deleteCompany = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para eliminar ${entity}`);
+            return handleRequestError(res, 400, CompanyMessages.deleteCompany.notParameters);
         }
 
         const deletedRows = await companyModel.destroy({ where: { 'c_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: `${entity} eliminada con éxito` });
+            res.status(200).send({ message: CompanyMessages.deleteCompany.deleted });
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, CompanyMessages.deleteCompany.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al eliminar ${entity}`, error);
+        handleRequestError(res, 500, CompanyMessages.deleteCompany.handleError, error);
     }
 
 };

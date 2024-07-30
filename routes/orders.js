@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
+const ApiKeyMiddleware = require('./../middlewares/apiKey');
+
 const { getOrders, getOrder, createOrder, updateOrder, deleteOrder } = require('./../controllers/order');
 
-router.get('/', getOrders);
+router.get('/', ApiKeyMiddleware, getOrders);
 
-router.get('/:id', getOrder);
+router.get('/:id', ApiKeyMiddleware, getOrder);
 
-router.post('/', createOrder);
+router.post('/', ApiKeyMiddleware, createOrder);
 
-router.put('/:id', updateOrder);
+router.put('/:id', ApiKeyMiddleware, updateOrder);
 
-router.delete('/:id', deleteOrder);
+router.delete('/:id', ApiKeyMiddleware, deleteOrder);
 
 module.exports = router;

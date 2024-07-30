@@ -1,7 +1,7 @@
 const warehouseModel = require('./../models/warehouses');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const entity = "Almacen";
+const { WarehouseMessages } = require('./../utils/handleMessages');
 
 const getWarehouses = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ const getWarehouses = async (req, res) => {
         res.send({Warehouses});
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}es`, error);
+        handleRequestError(res, 500, WarehouseMessages.getWarehouses.handleError, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getWarehouse = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para buscar ${entity}`);
+            return handleRequestError(res, 400, WarehouseMessages.getWarehouse.notParameters);
         }
 
         const Warehouse = await warehouseModel.findByPk(id);
@@ -27,11 +27,11 @@ const getWarehouse = async (req, res) => {
             res.send({Warehouse});
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrado`);
+            handleRequestError(res, 404, WarehouseMessages.getWarehouse.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}`, error);
+        handleRequestError(res, 500, WarehouseMessages.getWarehouse.handleError, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createWarehouse = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, `Faltan parámetros para registrar ${entity}`);
+            return handleRequestError(res, 400, WarehouseMessages.createWarehouse.notParameters);
         }
 
         const Warehouse = await warehouseModel.create(body);
@@ -49,12 +49,12 @@ const createWarehouse = async (req, res) => {
             res.status(201).send({ Warehouse });
 
         } else {
-            handleRequestError(res, 404, `${entity} no registrado`);
+            handleRequestError(res, 404, WarehouseMessages.createWarehouse.notRegistered);
         }
 
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al registrar ${entity}`, error);
+        handleRequestError(res, 500, WarehouseMessages.createWarehouse.handleError, error);
     }
 };
 
@@ -64,7 +64,7 @@ const updateWarehouse = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, `Faltan parámetros para actualizar ${entity}`);
+            return handleRequestError(res, 400, WarehouseMessages.updateWarehouse.notParameters);
         }
 
         const [updatedRows] = await warehouseModel.update(body, {
@@ -76,11 +76,11 @@ const updateWarehouse = async (req, res) => {
             res.status(200).send({ Warehouse: updatedWarehouse });
 
         } else {
-            handleRequestError(res, 404, `${entity} no actualizado`);
+            handleRequestError(res, 404, WarehouseMessages.updateWarehouse.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al actualizar ${entity}`, error);
+        handleRequestError(res, 500, WarehouseMessages.updateWarehouse.handleError, error);
     }
 };
 
@@ -89,21 +89,21 @@ const deleteWarehouse = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para eliminar ${entity}`);
+            return handleRequestError(res, 400, WarehouseMessages.deleteWarehouse.notParameters);
         }
 
         const deletedRows = await warehouseModel.destroy({ where: { 'wh_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: `${entity} eliminado con éxito` });
+            res.status(200).send({ message: WarehouseMessages.deleteWarehouse.deleted });
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrado`);
+            handleRequestError(res, 404, WarehouseMessages.deleteWarehouse.deleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al eliminar ${entity}`, error);
+        handleRequestError(res, 500, WarehouseMessages.deleteWarehouse.handleError, error);
     }
 
 };

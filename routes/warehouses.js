@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
+const ApiKeyMiddleware = require('./../middlewares/apiKey');
+
 const { getWarehouses, getWarehouse, createWarehouse, updateWarehouse, deleteWarehouse } = require('./../controllers/warehouse');
 
-router.get('/', getWarehouses);
+router.get('/', ApiKeyMiddleware, getWarehouses);
 
-router.get('/:id', getWarehouse);
+router.get('/:id', ApiKeyMiddleware, getWarehouse);
 
-router.post('/', createWarehouse);
+router.post('/', ApiKeyMiddleware, createWarehouse);
 
-router.put('/:id', updateWarehouse);
+router.put('/:id', ApiKeyMiddleware, updateWarehouse);
 
-router.delete('/:id', deleteWarehouse);
+router.delete('/:id', ApiKeyMiddleware, deleteWarehouse);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const quoteModel = require('./../models/quotes');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const entity = "Ofertas de Ventas";
+const { QuoteMessages } = require('./../utils/handleMessages');
 
 const getQuotes = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ const getQuotes = async (req, res) => {
         res.send({Quotes});
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}s`, error);
+        handleRequestError(res, 500, QuoteMessages.getQuotes.handleError, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getQuote = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para buscar ${entity}`);
+            return handleRequestError(res, 400, QuoteMessages.getQuote.notParameters);
         }
 
         const Quote = await quoteModel.findByPk(id);
@@ -27,11 +27,11 @@ const getQuote = async (req, res) => {
             res.send({Quote});
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, QuoteMessages.getQuote.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}`, error);
+        handleRequestError(res, 500, QuoteMessages.getQuote.handleError, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createQuote = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, `Faltan parámetros para registrar ${entity}`);
+            return handleRequestError(res, 400, QuoteMessages.createQuote.notParameters);
         }
 
         const Quote = await quoteModel.create(body);
@@ -49,12 +49,12 @@ const createQuote = async (req, res) => {
             res.status(201).send({ Quote });
 
         } else {
-            handleRequestError(res, 404, `${entity} no registrada`);
+            handleRequestError(res, 404, QuoteMessages.createQuote.notRegistered);
         }
 
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al registrar ${entity}`, error);
+        handleRequestError(res, 500, QuoteMessages.createQuote.handleError, error);
     }
 };
 
@@ -64,7 +64,7 @@ const updateQuote = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, `Faltan parámetros para actualizar ${entity}`);
+            return handleRequestError(res, 400, QuoteMessages.updateQuote.notParameters);
         }
 
         const [updatedRows] = await quoteModel.update(body, {
@@ -76,11 +76,11 @@ const updateQuote = async (req, res) => {
             res.status(200).send({ Quote: updatedQuote });
 
         } else {
-            handleRequestError(res, 404, `${entity} no actualizada`);
+            handleRequestError(res, 404, QuoteMessages.updateQuote.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al actualizar ${entity}`, error);
+        handleRequestError(res, 500, QuoteMessages.updateQuote.handleError, error);
     }
 };
 
@@ -89,21 +89,21 @@ const deleteQuote = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para eliminar ${entity}`);
+            return handleRequestError(res, 400, QuoteMessages.deleteQuote.notParameters);
         }
 
         const deletedRows = await quoteModel.destroy({ where: { 'quo_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: `${entity} eliminada con éxito` });
+            res.status(200).send({ message: QuoteMessages.deleteQuote.deleted });
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, QuoteMessages.deleteQuote.deleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al eliminar ${entity}`, error);
+        handleRequestError(res, 500, QuoteMessages.deleteQuote.handleError, error);
     }
 
 };

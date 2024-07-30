@@ -1,7 +1,7 @@
 const priceModel = require('./../models/prices');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const entity = "Precios";
+const { PriceMessages } = require('./../utils/handleMessages');
 
 const getPrices = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ const getPrices = async (req, res) => {
         res.send({Prices});
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}s`, error);
+        handleRequestError(res, 500, PriceMessages.getPrices.handleError, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getPrice = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para buscar ${entity}`);
+            return handleRequestError(res, 400, PriceMessages.getPrice.notParameters);
         }
 
         const Price = await priceModel.findByPk(id);
@@ -27,11 +27,11 @@ const getPrice = async (req, res) => {
             res.send({Price});
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrado`);
+            handleRequestError(res, 404, PriceMessages.getPrice.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}`, error);
+        handleRequestError(res, 500, PriceMessages.getPrice.handleError, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createPrice = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, `Faltan parámetros para registrar ${entity}`);
+            return handleRequestError(res, 400, PriceMessages.getPrice.notParameters);
         }
 
         const Price = await priceModel.create(body);
@@ -49,12 +49,12 @@ const createPrice = async (req, res) => {
             res.status(201).send({ Price });
 
         } else {
-            handleRequestError(res, 404, `${entity} no registrada`);
+            handleRequestError(res, 404, PriceMessages.createPrice.notFound);
         }
 
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al registrar ${entity}`, error);
+        handleRequestError(res, 500, PriceMessages.createPrice.handleError, error);
     }
 };
 
@@ -64,7 +64,7 @@ const updatePrice = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, `Faltan parámetros para actualizar ${entity}`);
+            return handleRequestError(res, 400, PriceMessages.updatePrice.notParameters);
         }
 
         const [updatedRows] = await priceModel.update(body, {
@@ -76,11 +76,11 @@ const updatePrice = async (req, res) => {
             res.status(200).send({ Price: updatedPrice });
 
         } else {
-            handleRequestError(res, 404, `${entity} no actualizada`);
+            handleRequestError(res, 404, PriceMessages.updatePrice.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al actualizar ${entity}`, error);
+        handleRequestError(res, 500, PriceMessages.updatePrice.handleError, error);
     }
 };
 
@@ -89,21 +89,21 @@ const deletePrice = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para eliminar ${entity}`);
+            return handleRequestError(res, 400, PriceMessages.deletePrice.notParameters);
         }
 
         const deletedRows = await priceModel.destroy({ where: { 'p_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: `${entity} eliminada con éxito` });
+            res.status(200).send({ message: PriceMessages.deletePrice.deleted });
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, PriceMessages.deletePrice.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al eliminar ${entity}`, error);
+        handleRequestError(res, 500, PriceMessages.deletePrice.handleError, error);
     }
 
 };

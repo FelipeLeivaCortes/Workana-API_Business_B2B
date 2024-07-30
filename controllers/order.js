@@ -1,7 +1,7 @@
 const orderModel = require('./../models/orders');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const entity = "Orden de Venta";
+const { OrderMessages } = require('./../utils/handleMessages');
 
 const getOrders = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ const getOrders = async (req, res) => {
         res.send({Orders});
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}s`, error);
+        handleRequestError(res, 500, OrderMessages.getOrders.handleError, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getOrder = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para buscar ${entity}`);
+            return handleRequestError(res, 400, OrderMessages.getOrder.notParameters);
         }
 
         const Order = await orderModel.findByPk(id);
@@ -27,11 +27,11 @@ const getOrder = async (req, res) => {
             res.send({Order});
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, OrderMessages.getOrder.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}`, error);
+        handleRequestError(res, 500, OrderMessages.getOrder.handleError, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createOrder = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, `Faltan parámetros para registrar ${entity}`);
+            return handleRequestError(res, 400, OrderMessages.createOrder.notParameters);
         }
 
         const Order = await orderModel.create(body);
@@ -49,12 +49,12 @@ const createOrder = async (req, res) => {
             res.status(201).send({ Order });
 
         } else {
-            handleRequestError(res, 404, `${entity} no registrada`);
+            handleRequestError(res, 404, OrderMessages.createOrder.notRegistered);
         }
 
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al registrar ${entity}`, error);
+        handleRequestError(res, 500, OrderMessages.createOrder.handleError, error);
     }
 };
 
@@ -64,7 +64,7 @@ const updateOrder = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, `Faltan parámetros para actualizar ${entity}`);
+            return handleRequestError(res, 400, OrderMessages.updateOrder.notParameters);
         }
 
         const [updatedRows] = await orderModel.update(body, {
@@ -76,11 +76,11 @@ const updateOrder = async (req, res) => {
             res.status(200).send({ Order: updatedOrder });
 
         } else {
-            handleRequestError(res, 404, `${entity} no actualizada`);
+            handleRequestError(res, 404, OrderMessages.updateOrder.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al actualizar ${entity}`, error);
+        handleRequestError(res, 500, OrderMessages.updateOrder.handleError, error);
     }
 };
 
@@ -89,21 +89,21 @@ const deleteOrder = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para eliminar ${entity}`);
+            return handleRequestError(res, 400, OrderMessages.deleteOrder.notParameters);
         }
 
         const deletedRows = await orderModel.destroy({ where: { 'order_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: `${entity} eliminada con éxito` });
+            res.status(200).send({ message: OrderMessages.deleteOrder.deleted });
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrada`);
+            handleRequestError(res, 404, OrderMessages.deleteOrder.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al eliminar ${entity}`, error);
+        handleRequestError(res, 500, OrderMessages.deleteOrder.handleError, error);
     }
 
 };

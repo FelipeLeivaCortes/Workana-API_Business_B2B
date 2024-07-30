@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
+const ApiKeyMiddleware = require('./../middlewares/apiKey');
+
 const { getCompanies, getCompany, createCompany, updateCompany, deleteCompany } = require('./../controllers/company');
 
-router.get('/', getCompanies);
+router.get('/', ApiKeyMiddleware, getCompanies);
 
-router.get('/:id', getCompany);
+router.get('/:id', ApiKeyMiddleware, getCompany);
 
-router.post('/', createCompany);
+router.post('/', ApiKeyMiddleware, createCompany);
 
-router.put('/:id', updateCompany);
+router.put('/:id', ApiKeyMiddleware, updateCompany);
 
-router.delete('/:id', deleteCompany);
+router.delete('/:id', ApiKeyMiddleware, deleteCompany);
 
 module.exports = router;

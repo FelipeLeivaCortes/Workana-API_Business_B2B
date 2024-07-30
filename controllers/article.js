@@ -1,7 +1,7 @@
 const articleModel = require('./../models/articles');
 const handleRequestError = require('./../utils/handleRequestError');
+const { ArticleMessages } = require('./../utils/handleMessages');
 
-const entity = "Artículo";
 
 const getArticles = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ const getArticles = async (req, res) => {
         res.send({Articles});
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}s`, error);
+        handleRequestError(res, 500, ArticleMessages.getArticles.handleError, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getArticle = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para buscar ${entity}`);
+            return handleRequestError(res, 400, ArticleMessages.getArticle.notParameters);
         }
 
         const Article = await articleModel.findByPk(id);
@@ -27,11 +27,11 @@ const getArticle = async (req, res) => {
             res.send({Article});
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrado`);
+            handleRequestError(res, 404, ArticleMessages.getArticle.notParameters);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, `Error al buscar ${entity}`, error);
+        handleRequestError(res, 500, ArticleMessages.getArticle.handleError, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createArticle = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, `Faltan parámetros para registrar ${entity}`);
+            return handleRequestError(res, 400, ArticleMessages.createArticle.notParameters);
         }
 
         const Article = await articleModel.create(body);
@@ -49,12 +49,12 @@ const createArticle = async (req, res) => {
             res.status(201).send({ Article });
 
         } else {
-            handleRequestError(res, 404, `${entity} no registrado`);
+            handleRequestError(res, 404, ArticleMessages.createArticle.notRegistered);
         }
 
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al registrar ${entity}`, error);
+        handleRequestError(res, 500, ArticleMessages.createArticle.handleError, error);
     }
 };
 
@@ -64,7 +64,7 @@ const updateArticle = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, `Faltan parámetros para actualizar ${entity}`);
+            return handleRequestError(res, 400, ArticleMessages.updateArticle.notParameters);
         }
 
         const [updatedRows] = await articleModel.update(body, {
@@ -76,11 +76,11 @@ const updateArticle = async (req, res) => {
             res.status(200).send({ Article: updatedArticle });
 
         } else {
-            handleRequestError(res, 404, `${entity} no actualizado`);
+            handleRequestError(res, 404, ArticleMessages.updateArticle.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al actualizar ${entity}`, error);
+        handleRequestError(res, 500, ArticleMessages.updateArticle.handleError, error);
     }
 };
 
@@ -89,21 +89,21 @@ const deleteArticle = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, `Faltan parámetros para eliminar ${entity}`);
+            return handleRequestError(res, 400, ArticleMessages.deleteArticle.notParameters);
         }
 
         const deletedRows = await articleModel.destroy({ where: { 'ar_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: `${entity} eliminado con éxito` });
+            res.status(200).send({ message: ArticleMessages.deleteArticle.deleted });
 
         } else {
-            handleRequestError(res, 404, `${entity} no encontrado`);
+            handleRequestError(res, 404, ArticleMessages.deleteArticle.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, `Error al eliminar ${entity}`, error);
+        handleRequestError(res, 500,ArticleMessages.deleteArticle.handleError, error);
     }
 
 };

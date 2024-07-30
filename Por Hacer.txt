@@ -1,0 +1,3 @@
+Implementar Swagger
+Normalizar mensajes de los endpoints
+Implementar JEST
