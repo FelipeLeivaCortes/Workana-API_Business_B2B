@@ -6,7 +6,7 @@ const { CompanyMessages } = require('./../utils/handleMessages');
 const getCompanies = async (req, res) => {
     try {
         const companies = await companyModel.findAll();
-        res.send({companies});
+        res.send({ companies });
 
     } catch (error) {
         handleRequestError(res, 500, CompanyMessages.getCompanies.handleError, error);
@@ -24,7 +24,7 @@ const getCompany = async (req, res) => {
         const company = await companyModel.findByPk(id);
 
         if (company) {
-            res.send({company});
+            res.send({ company });
 
         } else {
             handleRequestError(res, 404, CompanyMessages.getCompany.notFound);
@@ -51,7 +51,6 @@ const createCompany = async (req, res) => {
         } else {
             handleRequestError(res, 404, CompanyMessages.createCompany.notRegistered);
         }
-
         
     } catch (error) {
         handleRequestError(res, 500, CompanyMessages.createCompany.handleError, error);

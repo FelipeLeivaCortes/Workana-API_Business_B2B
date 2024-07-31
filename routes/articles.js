@@ -12,7 +12,7 @@ const { createArticle, updateArticle } = require('./../controllers/article');
  * /articles:
  *   get:
  *     tags:
- *       - articles
+ *       - Artículos
  *     summary: "Obtener lista de Artículos"
  *     description: "Obtiene un listado de todos los artículos disponibles"
  *     responses:
@@ -29,7 +29,7 @@ const { createArticle, updateArticle } = require('./../controllers/article');
  * /articles/{id}:
  *   get:
  *     tags:
- *       - articles
+ *       - Artículos
  *     summary: "Obtener un artículo por ID"
  *     description: "Obtiene los detalles de un artículo específico por su ID"
  *     parameters:
@@ -55,7 +55,7 @@ const { createArticle, updateArticle } = require('./../controllers/article');
  * /articles:
  *   post:
  *     tags:
- *       - articles
+ *       - Artículos
  *     summary: "Crear un nuevo artículo"
  *     description: "Crea un nuevo artículo con la información proporcionada"
  *     requestBody:
@@ -79,7 +79,7 @@ const { createArticle, updateArticle } = require('./../controllers/article');
  * /articles/{id}:
  *   put:
  *     tags:
- *       - articles
+ *       - Artículos
  *     summary: "Actualizar un artículo"
  *     description: "Actualiza la información de un artículo específico por su ID"
  *     parameters:
@@ -112,7 +112,7 @@ const { createArticle, updateArticle } = require('./../controllers/article');
  * /articles/{id}:
  *   delete:
  *     tags:
- *       - articles
+ *       - Artículos
  *     summary: "Eliminar un artículo"
  *     description: "Elimina un artículo específico por su ID"
  *     parameters:

@@ -12,9 +12,9 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  * /companies:
  *   get:
  *     tags:
- *       - companies
- *     summary: "Obtener lista de Empresas"
- *     description: "Obtiene un listado de todas las empresas registradas"
+ *       - Clientes
+ *     summary: "Obtener lista de Clientes"
+ *     description: "Obtiene un listado de todos los clientes registrados"
  *     responses:
  *       '200':
  *         description: "OK"
@@ -29,14 +29,14 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  * /companies/{id}:
  *   get:
  *     tags:
- *       - companies
- *     summary: "Obtener una empresa por ID"
- *     description: "Obtiene los detalles de una empresa específica por su ID"
+ *       - Clientes
+ *     summary: "Obtener una cliente por ID"
+ *     description: "Obtiene los detalles de un cliente específico por su ID"
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: "ID de la empresa"
+ *         description: "ID de cliente"
  *         schema:
  *           type: string
  *     responses:
@@ -55,9 +55,9 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  * /companies:
  *   post:
  *     tags:
- *       - companies
- *     summary: "Crear una nueva empresa"
- *     description: "Crea una nueva empresa con la información proporcionada"
+ *       - Clientes
+ *     summary: "Crear un nuevo cliente"
+ *     description: "Crea un nuevo cliente con la información proporcionada"
  *     requestBody:
  *       content:
  *         application/json:
@@ -65,7 +65,7 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  *             $ref: "#/components/schemas/company"
  *     responses:
  *       '201':
- *         description: "Empresa creada exitosamente"
+ *         description: "Cliente creado exitosamente"
  *       '400':
  *         description: "Solicitud incorrecta"
  *       '401':
@@ -79,14 +79,14 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  * /companies/{id}:
  *   put:
  *     tags:
- *       - companies
- *     summary: "Actualizar una empresa"
- *     description: "Actualiza la información de una empresa específica por su ID"
+ *       - Clientes
+ *     summary: "Actualizar un cliente"
+ *     description: "Actualiza la información de un cliente específica por su ID"
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: "ID de la empresa"
+ *         description: "ID del cliente"
  *         schema:
  *           type: string
  *     requestBody:
@@ -96,13 +96,13 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  *             $ref: "#/components/schemas/company"
  *     responses:
  *       '200':
- *         description: "Empresa actualizada exitosamente"
+ *         description: "Cliente actualizado exitosamente"
  *       '400':
  *         description: "Solicitud incorrecta"
  *       '401':
  *         description: "Sin permisos para realizar la acción"
  *       '404':
- *         description: "Empresa no encontrada"
+ *         description: "Cliente no encontrado"
  *       '500':
  *         description: "Error del servidor"
  */
@@ -112,23 +112,23 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  * /companies/{id}:
  *   delete:
  *     tags:
- *       - companies
- *     summary: "Eliminar una empresa"
- *     description: "Elimina una empresa específica por su ID"
+ *       - Clientes
+ *     summary: "Eliminar un cliente"
+ *     description: "Elimina un cliente específico por su ID"
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: "ID de la empresa"
+ *         description: "ID del cliente"
  *         schema:
  *           type: string
  *     responses:
  *       '200':
- *         description: "Empresa eliminada exitosamente"
+ *         description: "Cliente eliminado exitosamente"
  *       '401':
  *         description: "Sin permisos para realizar la acción"
  *       '404':
- *         description: "Empresa no encontrada"
+ *         description: "Cliente no encontrado"
  *       '500':
  *         description: "Error del servidor"
  */

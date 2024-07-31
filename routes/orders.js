@@ -12,7 +12,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  * /orders:
  *   get:
  *     tags:
- *       - orders
+ *       - Órdenes de Ventas
  *     summary: "Obtener lista de Órdenes"
  *     description: "Obtiene un listado de todas las órdenes registradas"
  *     responses:
@@ -29,7 +29,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  * /orders/{id}:
  *   get:
  *     tags:
- *       - orders
+ *       - Órdenes de Venta
  *     summary: "Obtener una orden por ID"
  *     description: "Obtiene los detalles de una orden específica por su ID"
  *     parameters:
@@ -55,7 +55,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  * /orders:
  *   post:
  *     tags:
- *       - orders
+ *       - Órdenes de Venta
  *     summary: "Crear una nueva orden"
  *     description: "Crea una nueva orden con la información proporcionada"
  *     requestBody:
@@ -79,7 +79,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  * /orders/{id}:
  *   put:
  *     tags:
- *       - orders
+ *       - Órdenes de Venta
  *     summary: "Actualizar una orden"
  *     description: "Actualiza la información de una orden específica por su ID"
  *     parameters:
@@ -112,7 +112,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  * /orders/{id}:
  *   delete:
  *     tags:
- *       - orders
+ *       - Órdenes de Venta
  *     summary: "Eliminar una orden"
  *     description: "Elimina una orden específica por su ID"
  *     parameters:

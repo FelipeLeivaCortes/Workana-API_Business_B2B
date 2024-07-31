@@ -10,7 +10,7 @@ const { updatePrice } = require('./../controllers/price');
  * /prices:
  *   get:
  *     tags:
- *       - prices
+ *       - Lista de Precios
  *     summary: "Obtener lista de Precios"
  *     description: "Obtiene un listado de todos los precios registrados"
  *     responses:
@@ -27,7 +27,7 @@ const { updatePrice } = require('./../controllers/price');
  * /prices/{id}:
  *   get:
  *     tags:
- *       - prices
+ *       - Lista de Precios
  *     summary: "Obtener un precio por ID"
  *     description: "Obtiene los detalles de un precio específico por su ID"
  *     parameters:
@@ -53,7 +53,7 @@ const { updatePrice } = require('./../controllers/price');
  * /prices:
  *   post:
  *     tags:
- *       - prices
+ *       - Lista de Precios
  *     summary: "Crear un nuevo precio"
  *     description: "Crea un nuevo precio con la información proporcionada"
  *     requestBody:
@@ -77,7 +77,7 @@ const { updatePrice } = require('./../controllers/price');
  * /prices/{id}:
  *   put:
  *     tags:
- *       - prices
+ *       - Lista de Precios
  *     summary: "Actualizar un precio"
  *     description: "Actualiza la información de un precio específico por su ID"
  *     parameters:
@@ -110,7 +110,7 @@ const { updatePrice } = require('./../controllers/price');
  * /prices/{id}:
  *   delete:
  *     tags:
- *       - prices
+ *       - Lista de Precios
  *     summary: "Eliminar un precio"
  *     description: "Elimina un precio específico por su ID"
  *     parameters:

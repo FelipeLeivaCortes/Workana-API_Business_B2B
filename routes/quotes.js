@@ -12,7 +12,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes:
  *   get:
  *     tags:
- *       - quotes
+ *       - Ofertas de Venta
  *     summary: "Obtener lista de Cotizaciones"
  *     description: "Obtiene un listado de todas las cotizaciones registradas"
  *     responses:
@@ -29,7 +29,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes/{id}:
  *   get:
  *     tags:
- *       - quotes
+ *       - Oferta de Ventas
  *     summary: "Obtener una cotización por ID"
  *     description: "Obtiene los detalles de una cotización específica por su ID"
  *     parameters:
@@ -55,7 +55,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes:
  *   post:
  *     tags:
- *       - quotes
+ *       - Oferta de Ventas
  *     summary: "Crear una nueva cotización"
  *     description: "Crea una nueva cotización con la información proporcionada"
  *     requestBody:
@@ -79,7 +79,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes/{id}:
  *   put:
  *     tags:
- *       - quotes
+ *       - Oferta de Ventas
  *     summary: "Actualizar una cotización"
  *     description: "Actualiza la información de una cotización específica por su ID"
  *     parameters:
@@ -112,7 +112,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes/{id}:
  *   delete:
  *     tags:
- *       - quotes
+ *       - Oferta de Ventas
  *     summary: "Eliminar una cotización"
  *     description: "Elimina una cotización específica por su ID"
  *     parameters:

@@ -12,7 +12,7 @@ const { createWarehouse, updateWarehouse } = require('./../controllers/warehouse
  * /warehouses:
  *   get:
  *     tags:
- *       - warehouses
+ *       - Almacenes
  *     summary: "Obtener lista de Almacenes"
  *     description: "Obtiene un listado de todos los almacenes registrados"
  *     responses:
@@ -29,7 +29,7 @@ const { createWarehouse, updateWarehouse } = require('./../controllers/warehouse
  * /warehouses/{id}:
  *   get:
  *     tags:
- *       - warehouses
+ *       - Almacenes
  *     summary: "Obtener un almacén por ID"
  *     description: "Obtiene los detalles de un almacén específico por su ID"
  *     parameters:
@@ -55,7 +55,7 @@ const { createWarehouse, updateWarehouse } = require('./../controllers/warehouse
  * /warehouses:
  *   post:
  *     tags:
- *       - warehouses
+ *       - Almacenes
  *     summary: "Crear un nuevo almacén"
  *     description: "Crea un nuevo almacén con la información proporcionada"
  *     requestBody:
@@ -79,7 +79,7 @@ const { createWarehouse, updateWarehouse } = require('./../controllers/warehouse
  * /warehouses/{id}:
  *   put:
  *     tags:
- *       - warehouses
+ *       - Almacenes
  *     summary: "Actualizar un almacén"
  *     description: "Actualiza la información de un almacén específico por su ID"
  *     parameters:
@@ -112,7 +112,7 @@ const { createWarehouse, updateWarehouse } = require('./../controllers/warehouse
  * /warehouses/{id}:
  *   delete:
  *     tags:
- *       - warehouses
+ *       - Almacenes
  *     summary: "Eliminar un almacén"
  *     description: "Elimina un almacén específico por su ID"
  *     parameters:

@@ -1,11 +1,13 @@
-const creditTransactionModel = require('./../models/credit_transactions');
+const creditTransactionModel = require('./../models/orders');
 const handleRequestError = require('./../utils/handleRequestError');
 
 const { CreditTransactionMessages } = require('./../utils/handleMessages');
 
 const getCreditTransactions = async (req, res) => {
     try {
-        const creditTransactions = await creditTransactionModel.findAll();
+        const creditTransactions = await creditTransactionModel.findAll({
+            where: { order_state_id: 1 }
+        });
         res.send({creditTransactions});
 
     } catch (error) {

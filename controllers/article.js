@@ -5,8 +5,8 @@ const { ArticleMessages } = require('./../utils/handleMessages');
 
 const getArticles = async (req, res) => {
     try {
-        const Articles = await articleModel.findAll();
-        res.send({Articles});
+        const articles = await articleModel.findAll();
+        res.send({ articles });
 
     } catch (error) {
         handleRequestError(res, 500, ArticleMessages.getArticles.handleError, error);
@@ -21,10 +21,10 @@ const getArticle = async (req, res) => {
             return handleRequestError(res, 400, ArticleMessages.getArticle.notParameters);
         }
 
-        const Article = await articleModel.findByPk(id);
+        const article = await articleModel.findByPk(id);
 
-        if (Article) {
-            res.send({Article});
+        if (article) {
+            res.send({ article });
 
         } else {
             handleRequestError(res, 404, ArticleMessages.getArticle.notParameters);
@@ -43,10 +43,10 @@ const createArticle = async (req, res) => {
             return handleRequestError(res, 400, ArticleMessages.createArticle.notParameters);
         }
 
-        const Article = await articleModel.create(body);
+        const article = await articleModel.create(body);
 
-        if (Article) {
-            res.status(201).send({ Article });
+        if (article) {
+            res.status(201).send({ article });
 
         } else {
             handleRequestError(res, 404, ArticleMessages.createArticle.notRegistered);
@@ -73,7 +73,7 @@ const updateArticle = async (req, res) => {
 
         if (updatedRows > 0) {
             const updatedArticle = await articleModel.findByPk(id);
-            res.status(200).send({ Article: updatedArticle });
+            res.status(200).send({ article: updatedArticle });
 
         } else {
             handleRequestError(res, 404, ArticleMessages.updateArticle.notUpdated);

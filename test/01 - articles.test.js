@@ -61,7 +61,6 @@ describe('[ARTICLE] Test to create an article as SAP User', () => {
      */
     test("Must return a 201 code", async () => {
         const article = {
-            ar_id: 100,
             ar_name: "Name",
             ar_desc: "Descuento",
             ar_characteristics: "Características",
@@ -77,6 +76,6 @@ describe('[ARTICLE] Test to create an article as SAP User', () => {
 
         expect(response.statusCode).toEqual(201);
         expect(response.type).toBe('application/json');
-        expect(response.body).toHaveProperty('Article');
+        expect(response.body).toHaveProperty('article');
     });
 });

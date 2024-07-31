@@ -8,7 +8,8 @@ const Article = sequelize.define(
         ar_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         ar_name: {
             type: DataTypes.STRING,
