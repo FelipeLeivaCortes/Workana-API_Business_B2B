@@ -11,6 +11,9 @@ const swaggerDefinition = {
     servers: [
         {
             url: `http://localhost:${process.env.APP_PORT}/api`
+        },
+        {
+            url: `https://mantencionembalses.com/api`
         }
     ],
     components: {
