@@ -1,15 +1,15 @@
 const warehouseModel = require('./../models/warehouses');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const { WarehouseMessages } = require('./../utils/handleMessages');
+const { warehouseMessages } = require('./../utils/handleMessages');
 
 const getWarehouses = async (req, res) => {
     try {
-        const Warehouses = await warehouseModel.findAll();
-        res.send({Warehouses});
+        const warehouses = await warehouseModel.findAll();
+        res.send({ warehouses });
 
     } catch (error) {
-        handleRequestError(res, 500, WarehouseMessages.getWarehouses.handleError, error);
+        handleRequestError(res, 500, warehouseMessages.handleError.getWarehouses, error);
     }
 };
 
@@ -18,20 +18,20 @@ const getWarehouse = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, WarehouseMessages.getWarehouse.notParameters);
+            return handleRequestError(res, 400, warehouseMessages.notParameters);
         }
 
-        const Warehouse = await warehouseModel.findByPk(id);
+        const warehouse = await warehouseModel.findByPk(id);
 
-        if (Warehouse) {
-            res.send({Warehouse});
+        if (warehouse) {
+            res.send({ warehouse });
 
         } else {
-            handleRequestError(res, 404, WarehouseMessages.getWarehouse.notFound);
+            handleRequestError(res, 404, warehouseMessages.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, WarehouseMessages.getWarehouse.handleError, error);
+        handleRequestError(res, 500, warehouseMessages.handleError.getWarehouse, error);
     }
 };
 
@@ -40,21 +40,20 @@ const createWarehouse = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, WarehouseMessages.createWarehouse.notParameters);
+            return handleRequestError(res, 400, warehouseMessages.notParameters);
         }
 
-        const Warehouse = await warehouseModel.create(body);
+        const warehouse = await warehouseModel.create(body);
 
-        if (Warehouse) {
-            res.status(201).send({ Warehouse });
+        if (warehouse) {
+            res.status(201).send({ warehouse });
 
         } else {
-            handleRequestError(res, 404, WarehouseMessages.createWarehouse.notRegistered);
+            handleRequestError(res, 404, warehouseMessages.notCreated);
         }
-
         
     } catch (error) {
-        handleRequestError(res, 500, WarehouseMessages.createWarehouse.handleError, error);
+        handleRequestError(res, 500, warehouseMessages.handleError.createWarehouse, error);
     }
 };
 
@@ -64,7 +63,7 @@ const updateWarehouse = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, WarehouseMessages.updateWarehouse.notParameters);
+            return handleRequestError(res, 400, warehouseMessages.notParameters);
         }
 
         const [updatedRows] = await warehouseModel.update(body, {
@@ -73,14 +72,14 @@ const updateWarehouse = async (req, res) => {
 
         if (updatedRows > 0) {
             const updatedWarehouse = await warehouseModel.findByPk(id);
-            res.status(200).send({ Warehouse: updatedWarehouse });
+            res.status(200).send({ warehouse: updatedWarehouse });
 
         } else {
-            handleRequestError(res, 404, WarehouseMessages.updateWarehouse.notUpdated);
+            handleRequestError(res, 404, warehouseMessages.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, WarehouseMessages.updateWarehouse.handleError, error);
+        handleRequestError(res, 500, warehouseMessages.handleError.updateWarehouse, error);
     }
 };
 
@@ -89,21 +88,21 @@ const deleteWarehouse = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, WarehouseMessages.deleteWarehouse.notParameters);
+            return handleRequestError(res, 400, warehouseMessages.notParameters);
         }
 
         const deletedRows = await warehouseModel.destroy({ where: { 'wh_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: WarehouseMessages.deleteWarehouse.deleted });
+            res.status(200).send({ message: warehouseMessages.deleted });
 
         } else {
-            handleRequestError(res, 404, WarehouseMessages.deleteWarehouse.deleted);
+            handleRequestError(res, 404, warehouseMessages.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, WarehouseMessages.deleteWarehouse.handleError, error);
+        handleRequestError(res, 500, warehouseMessages.handleError.deleteWarehouse, error);
     }
 
 };

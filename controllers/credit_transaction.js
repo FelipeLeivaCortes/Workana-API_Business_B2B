@@ -1,17 +1,17 @@
 const creditTransactionModel = require('./../models/orders');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const { CreditTransactionMessages } = require('./../utils/handleMessages');
+const { transactionMessages } = require('./../utils/handleMessages');
 
 const getCreditTransactions = async (req, res) => {
     try {
         const creditTransactions = await creditTransactionModel.findAll({
             where: { order_state_id: 1 }
         });
-        res.send({creditTransactions});
+        res.send({ creditTransactions });
 
     } catch (error) {
-        handleRequestError(res, 500, CreditTransactionMessages.getCreditTransactions.handleError, error);
+        handleRequestError(res, 500, transactionMessages.handleError.getCreditTransactions, error);
     }
 };
 
@@ -20,20 +20,20 @@ const getCreditTransaction = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, CreditTransactionMessages.getCreditTransaction.notParameters);
+            return handleRequestError(res, 400, transactionMessages.notParameters);
         }
 
         const creditTransaction = await creditTransactionModel.findByPk(id);
 
         if (creditTransaction) {
-            res.send({creditTransaction});
+            res.send({ creditTransaction });
 
         } else {
-            handleRequestError(res, 404, CreditTransactionMessages.getCreditTransaction.notFound);
+            handleRequestError(res, 404, transactionMessages.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, CreditTransactionMessages.getCreditTransaction.handleError, error);
+        handleRequestError(res, 500, transactionMessages.handleError.getCreditTransaction, error);
     }
 };
 
@@ -42,7 +42,7 @@ const createCreditTransaction = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, CreditTransactionMessages.createCreditTransaction.notParameters);
+            return handleRequestError(res, 400, transactionMessages.notParameters);
         }
 
         const creditTransaction = await creditTransactionModel.create(body);
@@ -51,11 +51,11 @@ const createCreditTransaction = async (req, res) => {
             res.status(201).send({ creditTransaction });
 
         } else {
-            handleRequestError(res, 404, CreditTransactionMessages.createCreditTransaction.notFound);
+            handleRequestError(res, 404, transactionMessages.notCreated);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, CreditTransactionMessages.createCreditTransaction.handleError, error);
+        handleRequestError(res, 500, transactionMessages.handleError.createCreditTransaction, error);
     }
 };
 
@@ -65,7 +65,7 @@ const updateCreditTransaction = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, CreditTransactionMessages.updateCreditTransaction.notParameters);
+            return handleRequestError(res, 400, transactionMessages.notParameters);
         }
 
         const [updatedRows] = await creditTransactionModel.update(body, {
@@ -74,14 +74,14 @@ const updateCreditTransaction = async (req, res) => {
 
         if (updatedRows > 0) {
             const updatedCreditTransaction = await creditTransactionModel.findByPk(id);
-            res.status(200).send({ CreditTransaction: updatedCreditTransaction });
+            res.status(200).send({ creditTransaction: updatedCreditTransaction });
 
         } else {
-            handleRequestError(res, 404, CreditTransactionMessages.updateCreditTransaction.notUpdated);
+            handleRequestError(res, 404, transactionMessages.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, CreditTransactionMessages.updateCreditTransaction.handleError, error);
+        handleRequestError(res, 500, transactionMessages.handleError.updateCreditTransaction, error);
     }
 };
 
@@ -90,21 +90,21 @@ const deletePrice = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400,  CreditTransactionMessages.deleteCreditTransaction.notParameters);
+            return handleRequestError(res, 400,  transactionMessages.notParameters);
         }
 
         const deletedRows = await creditTransactionModel.destroy({ where: { 'transaction_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: CreditTransactionMessages.deleteCreditTransaction.deleted });
+            res.status(200).send({ message: transactionMessages.deleted });
 
         } else {
-            handleRequestError(res, 404, CreditTransactionMessages.deleteCreditTransaction.notDeleted);
+            handleRequestError(res, 404, transactionMessages.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, CreditTransactionMessages.deleteCreditTransaction.handleError, error);
+        handleRequestError(res, 500, transactionMessages.handleError.deleteCreditTransaction, error);
     }
 };
 

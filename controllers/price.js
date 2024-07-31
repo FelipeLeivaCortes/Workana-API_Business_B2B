@@ -1,15 +1,15 @@
 const priceModel = require('./../models/prices');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const { PriceMessages } = require('./../utils/handleMessages');
+const { priceMessages } = require('./../utils/handleMessages');
 
 const getPrices = async (req, res) => {
     try {
-        const Prices = await priceModel.findAll();
-        res.send({Prices});
+        const prices = await priceModel.findAll();
+        res.send({ prices });
 
     } catch (error) {
-        handleRequestError(res, 500, PriceMessages.getPrices.handleError, error);
+        handleRequestError(res, 500, priceMessages.handleError.getPrices, error);
     }
 };
 
@@ -18,20 +18,20 @@ const getPrice = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, PriceMessages.getPrice.notParameters);
+            return handleRequestError(res, 400, priceMessages.notParameters);
         }
 
-        const Price = await priceModel.findByPk(id);
+        const price = await priceModel.findByPk(id);
 
-        if (Price) {
-            res.send({Price});
+        if (price) {
+            res.send({ price });
 
         } else {
-            handleRequestError(res, 404, PriceMessages.getPrice.notFound);
+            handleRequestError(res, 404, priceMessages.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, PriceMessages.getPrice.handleError, error);
+        handleRequestError(res, 500, priceMessages.handleError.getPrice, error);
     }
 };
 
@@ -40,21 +40,20 @@ const createPrice = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, PriceMessages.createPrice.notParameters);
+            return handleRequestError(res, 400, priceMessages.notParameters);
         }
 
-        const Price = await priceModel.create(body);
+        const price = await priceModel.create(body);
 
-        if (Price) {
-            res.status(201).send({ Price });
+        if (price) {
+            res.status(201).send({ price });
 
         } else {
-            handleRequestError(res, 404, PriceMessages.createPrice.notFound);
+            handleRequestError(res, 404, priceMessages.notCreated);
         }
 
-        
     } catch (error) {
-        handleRequestError(res, 500, PriceMessages.createPrice.handleError, error);
+        handleRequestError(res, 500, priceMessages.handleError.createPrice, error);
     }
 };
 
@@ -64,7 +63,7 @@ const updatePrice = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, PriceMessages.updatePrice.notParameters);
+            return handleRequestError(res, 400, priceMessages.notParameters);
         }
 
         const [updatedRows] = await priceModel.update(body, {
@@ -73,14 +72,14 @@ const updatePrice = async (req, res) => {
 
         if (updatedRows > 0) {
             const updatedPrice = await priceModel.findByPk(id);
-            res.status(200).send({ Price: updatedPrice });
+            res.status(200).send({ price: updatedPrice });
 
         } else {
-            handleRequestError(res, 404, PriceMessages.updatePrice.notUpdated);
+            handleRequestError(res, 404, priceMessages.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, PriceMessages.updatePrice.handleError, error);
+        handleRequestError(res, 500, priceMessages.handleError.updatePrice, error);
     }
 };
 
@@ -89,21 +88,21 @@ const deletePrice = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, PriceMessages.deletePrice.notParameters);
+            return handleRequestError(res, 400, priceMessages.notParameters);
         }
 
         const deletedRows = await priceModel.destroy({ where: { 'p_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: PriceMessages.deletePrice.deleted });
+            res.status(200).send({ message: priceMessages.deleted });
 
         } else {
-            handleRequestError(res, 404, PriceMessages.deletePrice.notDeleted);
+            handleRequestError(res, 404, priceMessages.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, PriceMessages.deletePrice.handleError, error);
+        handleRequestError(res, 500, priceMessages.handleError.deletePrice, error);
     }
 };
 

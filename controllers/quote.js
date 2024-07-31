@@ -1,15 +1,15 @@
 const quoteModel = require('./../models/quotes');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const { QuoteMessages } = require('./../utils/handleMessages');
+const { quoteMessages } = require('./../utils/handleMessages');
 
 const getQuotes = async (req, res) => {
     try {
-        const Quotes = await quoteModel.findAll();
-        res.send({Quotes});
+        const quotes = await quoteModel.findAll();
+        res.send({ quotes });
 
     } catch (error) {
-        handleRequestError(res, 500, QuoteMessages.getQuotes.handleError, error);
+        handleRequestError(res, 500, quoteMessages.handleError.getQuotes, error);
     }
 };
 
@@ -18,20 +18,20 @@ const getQuote = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, QuoteMessages.getQuote.notParameters);
+            return handleRequestError(res, 400, quoteMessages.notParameters);
         }
 
-        const Quote = await quoteModel.findByPk(id);
+        const quote = await quoteModel.findByPk(id);
 
-        if (Quote) {
-            res.send({Quote});
+        if (quote) {
+            res.send({ quote });
 
         } else {
-            handleRequestError(res, 404, QuoteMessages.getQuote.notFound);
+            handleRequestError(res, 404, quoteMessages.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, QuoteMessages.getQuote.handleError, error);
+        handleRequestError(res, 500, quoteMessages.handleError.getQuote, error);
     }
 };
 
@@ -40,21 +40,20 @@ const createQuote = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, QuoteMessages.createQuote.notParameters);
+            return handleRequestError(res, 400, quoteMessages.notParameters);
         }
 
-        const Quote = await quoteModel.create(body);
+        const quote = await quoteModel.create(body);
 
-        if (Quote) {
-            res.status(201).send({ Quote });
+        if (quote) {
+            res.status(201).send({ quote });
 
         } else {
-            handleRequestError(res, 404, QuoteMessages.createQuote.notRegistered);
+            handleRequestError(res, 404, quoteMessages.notCreated);
         }
 
-        
     } catch (error) {
-        handleRequestError(res, 500, QuoteMessages.createQuote.handleError, error);
+        handleRequestError(res, 500, quoteMessages.handleError.createQuote, error);
     }
 };
 
@@ -64,7 +63,7 @@ const updateQuote = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, QuoteMessages.updateQuote.notParameters);
+            return handleRequestError(res, 400, quoteMessages.notParameters);
         }
 
         const [updatedRows] = await quoteModel.update(body, {
@@ -73,14 +72,14 @@ const updateQuote = async (req, res) => {
 
         if (updatedRows > 0) {
             const updatedQuote = await quoteModel.findByPk(id);
-            res.status(200).send({ Quote: updatedQuote });
+            res.status(200).send({ quote: updatedQuote });
 
         } else {
-            handleRequestError(res, 404, QuoteMessages.updateQuote.notUpdated);
+            handleRequestError(res, 404, quoteMessages.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, QuoteMessages.updateQuote.handleError, error);
+        handleRequestError(res, 500, quoteMessages.handleError.createQuote, error);
     }
 };
 
@@ -89,21 +88,21 @@ const deleteQuote = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, QuoteMessages.deleteQuote.notParameters);
+            return handleRequestError(res, 400, quoteMessages.notParameters);
         }
 
         const deletedRows = await quoteModel.destroy({ where: { 'quo_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: QuoteMessages.deleteQuote.deleted });
+            res.status(200).send({ message: quoteMessages.deleted });
 
         } else {
-            handleRequestError(res, 404, QuoteMessages.deleteQuote.deleted);
+            handleRequestError(res, 404, quoteMessages.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, QuoteMessages.deleteQuote.handleError, error);
+        handleRequestError(res, 500, quoteMessages.handleError.deleteQuote, error);
     }
 };
 

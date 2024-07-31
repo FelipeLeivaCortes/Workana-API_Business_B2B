@@ -2,7 +2,6 @@ const { check } = require('express-validator');
 const validationResults = require('./../utils/handleValidator');
 
 const validatorCreateItem = [
-    check('quo_id').exists().notEmpty().isInt(),
     check('quo_name').exists().notEmpty().isString(),
     check('quo_desc').exists().notEmpty().isString(),
     check('quo_date').exists().notEmpty().isISO8601(),

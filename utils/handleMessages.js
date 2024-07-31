@@ -1,164 +1,130 @@
-const ArticleMessages = {
-    "getArticles": {
-        "handleError": "ERROR GET CONTROLLER ARTICLES"
+const articleMessages = {
+    "handleError": {
+        "getArticles": "ERROR GET CONTROLLER ARTICLES",
+        "getArticle": "ERROR GET CONTROLLER ARTICLE",
+        "createArticle": "ERROR CREATE CONTROLLER ARTICLE",
+        "updateArticle": "ERROR UPDATE CONTROLLER ARTICLE",
+        "deleteArticle": "ERROR DELETE CONTROLLER ARTICLE"
     },
-    "getArticle": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notFound": "NOT FOUND ARTICLE",
-        "handleError": "ERROR GET CONTROLLER ARTICLE"
-    },
-    "createArticle": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notRegistered": "ARTICLE WAS NOT REGISTERED",
-        "handleError": "ERROR CREATE CONTROLLER ARTICLE"
-    },
-    "updateArticle": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notUpdated": "ARTICLE WAS NOT UPDATED",
-        "handleError": "ERROR UPDATE CONTROLLER ARTICLE"
-    },
-    "deleteArticle": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "deleted": "ARTÍCULO ELIMINADO EXITOSAMENTE",
-        "notDeleted": "ARTICLE WAS NOT DELETED",
-        "handleError": "ERROR DELETE CONTROLLER ARTICLE"
-    }
+    "deleted": "artículo eliminado exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "ARTICLE NOT FOUND",
+    "notCreated": "ARTICLE NOT CREATED",
+    "notUpdated": "ARTICLE NOT UPDATED",
+    "notDeleted": "ARTICLE NOT DELETED"
 };
 
-const CompanyMessages = {
-    "getCompanies": {
-        "handleError": "ERROR GET CONTROLLER COMPANIES"
+const companyMessages = {
+    "handleError": {
+        "getCompanies": "ERROR GET CONTROLLER COMPANIES",
+        "getCompany": "ERROR GET CONTROLLER COMPANY",
+        "createCompany": "ERROR CREATE CONTROLLER COMPANY",
+        "updateCompany": "ERROR UPDATE CONTROLLER COMPANY",
+        "deleteCompany": "ERROR DELETE CONTROLLER COMPANY"
     },
-    "getCompany": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notFound": "NOT FOUND COMPANY",
-        "handleError": "ERROR GET CONTROLLER COMPANY"
-    },
-    "createCompany": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notRegistered": "COMPANY WAS NOT REGISTERED",
-        "handleError": "ERROR CREATE CONTROLLER COMPANY"
-    },
-    "updateCompany": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notUpdated": "COMPANY WAS NOT UPDATED",
-        "handleError": "ERROR UPDATE CONTROLLER COMPANY"
-    },
-    "deleteCompany": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "deleted": "EMPRESA ELIMINADA EXITOSAMENTE",
-        "notDeleted": "COMPANY WAS NOT DELETED",
-        "handleError": "ERROR DELETE CONTROLLER COMPANY"
-    }
+    "deleted": "cliente eliminado exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "COMPANY NOT FOUND",
+    "notCreated": "COMPANY WAS NOT REGISTERED",
+    "notUpdated": "COMPANY WAS NOT UPDATED",
+    "notDeleted": "COMPANY WAS NOT DELETED"
 };
 
-const OrderMessages = {
-    "getOrders": {
-        "handleError": "ERROR GET CONTROLLER ORDERS"
+const creditTransactionMessages = {
+    "handleError": {
+        "getCreditTransactions": "ERROR GET CONTROLLER CREDIT TRANSACTIONS",
+        "getCreditTransaction": "ERROR GET CONTROLLER CREDIT TRANSACTION",
+        "createCreditTransaction": "ERROR CREATE CONTROLLER CREDIT TRANSACTION",
+        "updateCreditTransaction": "ERROR UPDATE CONTROLLER CREDIT TRANSACTION",
+        "deleteCreditTransaction": "ERROR DELETE CONTROLLER CREDIT TRANSACTION"
     },
-    "getOrder": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notFound": "NOT FOUND ORDER",
-        "handleError": "ERROR GET CONTROLLER ORDER"
-    },
-    "createOrder": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notRegistered": "ORDER WAS NOT REGISTERED",
-        "handleError": "ERROR CREATE CONTROLLER ORDER"
-    },
-    "updateOrder": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notUpdated": "ORDER WAS NOT UPDATED",
-        "handleError": "ERROR UPDATE CONTROLLER ORDER"
-    },
-    "deleteOrder": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "deleted": "ORDEN DE COMPRA ELIMINADA EXITOSAMENTE",
-        "notDeleted": "ORDER WAS NOT DELETED",
-        "handleError": "ERROR DELETE CONTROLLER ORDER"
-    }
+    "deleted": "transacción eliminada exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "CREDIT TRANSACTION NOT FOUND",
+    "notCreated": "CREDIT TRANSACTION WAS NOT REGISTERED",
+    "notUpdated": "CREDIT TRANSACTION WAS NOT UPDATED",
+    "notDeleted": "CREDIT TRANSACTION WAS NOT DELETED",
+    "deleted": "CREDIT TRANSACTION SUCCESSFULLY DELETED"
 };
 
-const PriceMessages = {
-    "getPrices": {
-        "handleError": "ERROR GET CONTROLLER PRICES"
+const orderMessages = {
+    "handleError": {
+        "getOrders": "ERROR GET CONTROLLER ORDERS",
+        "getOrder": "ERROR GET CONTROLLER ORDER",
+        "createOrder": "ERROR CREATE CONTROLLER ORDER",
+        "updateOrder": "ERROR UPDATE CONTROLLER ORDER",
+        "deleteOrder": "ERROR DELETE CONTROLLER ORDER"
     },
-    "getPrice": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notFound": "NOT FOUND PRICE",
-        "handleError": "ERROR GET CONTROLLER PRICE"
-    },
-    "createPrice": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notRegistered": "PRICE WAS NOT REGISTERED",
-        "handleError": "ERROR CREATE CONTROLLER PRICE"
-    },
-    "updatePrice": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notUpdated": "PRICE WAS NOT UPDATED",
-        "handleError": "ERROR UPDATE CONTROLLER PRICE"
-    },
-    "deletePrice": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "deleted": "PRECIO DE VENTA ELIMINADA EXITOSAMENTE",
-        "notDeleted": "PRICE WAS NOT DELETED",
-        "handleError": "ERROR DELETE CONTROLLER PRICE"
-    }
+    "deleted": "orden de venta eliminada exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "ORDER NOT FOUND",
+    "notCreated": "ORDER WAS NOT REGISTERED",
+    "notUpdated": "ORDER WAS NOT UPDATED",
+    "notDeleted": "ORDER WAS NOT DELETED",
 };
 
-const QuoteMessages = {
-    "getQuotes": {
-        "handleError": "ERROR GET CONTROLLER QUOTES"
+const paymentMessages = {
+    "handleError": {
+        "getPayments": "ERROR GET CONTROLLER PAYMENTS",
+        "getPayment": "ERROR GET CONTROLLER PAYMENT",
+        "createPayment": "ERROR CREATE CONTROLLER PAYMENT",
+        "updatePayment": "ERROR UPDATE CONTROLLER PAYMENT",
+        "deletePayment": "ERROR DELETE CONTROLLER PAYMENT"
     },
-    "getQuote": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notFound": "NOT FOUND QUOTE",
-        "handleError": "ERROR GET CONTROLLER QUOTE"
-    },
-    "createQuote": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notRegistered": "QUOTE WAS NOT REGISTERED",
-        "handleError": "ERROR CREATE CONTROLLER QUOTE"
-    },
-    "updateQuote": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notUpdated": "QUOTE WAS NOT UPDATED",
-        "handleError": "ERROR UPDATE CONTROLLER QUOTE"
-    },
-    "deleteQuote": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "deleted": "OFERTA DE VENTA ELIMINADA EXITOSAMENTE",
-        "notDeleted": "QUOTE WAS NOT DELETED",
-        "handleError": "ERROR DELETE CONTROLLER QUOTE"
-    }
+    "deleted": "método de pago eliminado exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "PAYMENT NOT FOUND",
+    "notCreated": "PAYMENT WAS NOT REGISTERED",
+    "notUpdated": "PAYMENT WAS NOT UPDATED",
+    "notDeleted": "PAYMENT WAS NOT DELETED",
 };
 
-const WarehouseMessages = {
-    "getWarehouses": {
-        "handleError": "ERROR GET CONTROLLER WAREHOUSES"
+const priceMessages = {
+    "handleError": {
+        "getPrices": "ERROR GET CONTROLLER PRICES",
+        "getPrice": "ERROR GET CONTROLLER PRICE",
+        "createPrice": "ERROR CREATE CONTROLLER PRICE",
+        "updatePrice": "ERROR UPDATE CONTROLLER PRICE",
+        "deletePrice": "ERROR DELETE CONTROLLER PRICE"
     },
-    "getWarehouse": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notFound": "NOT FOUND WAREHOUSE",
-        "handleError": "ERROR GET CONTROLLER WAREHOUSE"
-    },
-    "createWarehouse": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notRegistered": "WAREHOUSE WAS NOT REGISTERED",
-        "handleError": "ERROR CREATE CONTROLLER WAREHOUSE"
-    },
-    "updateWarehouse": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "notUpdated": "WAREHOUSE WAS NOT UPDATED",
-        "handleError": "ERROR UPDATE CONTROLLER WAREHOUSE"
-    },
-    "deleteWarehouse": {
-        "notParameters": "NOT FOUND ALL PARAMETERS",
-        "deleted": "ALMACÉN ELIMINADO EXITOSAMENTE",
-        "notDeleted": "WAREHOUSE WAS NOT DELETED",
-        "handleError": "ERROR DELETE CONTROLLER WAREHOUSE"
-    }
+    "deleted": "precio de lista eliminado exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "PRICE NOT FOUND",
+    "notCreated": "PRICE WAS NOT REGISTERED",
+    "notUpdated": "PRICE WAS NOT UPDATED",
+    "notDeleted": "PRICE WAS NOT DELETED"
 };
 
-module.exports = { ArticleMessages, CompanyMessages, OrderMessages, PriceMessages, QuoteMessages, WarehouseMessages };
+const quoteMessages = {
+    "handleError": {
+        "getQuotes": "ERROR GET CONTROLLER QUOTES",
+        "getQuote": "ERROR GET CONTROLLER QUOTE",
+        "createQuote": "ERROR CREATE CONTROLLER QUOTE",
+        "updateQuote": "ERROR UPDATE CONTROLLER QUOTE",
+        "deleteQuote": "ERROR DELETE CONTROLLER QUOTE"
+    },
+    "deleted": "Oferta de venta eliminada exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "QUOTE NOT FOUND",
+    "notCreated": "QUOTE WAS NOT REGISTERED",
+    "notUpdated": "QUOTE WAS NOT UPDATED",
+    "notDeleted": "QUOTE WAS NOT DELETED",
+};
 
+const warehouseMessages = {
+    "handleError": {
+        "getWarehouses": "ERROR GET CONTROLLER WAREHOUSES",
+        "getWarehouse": "ERROR GET CONTROLLER WAREHOUSE",
+        "createWarehouse": "ERROR CREATE CONTROLLER WAREHOUSE",
+        "updateWarehouse": "ERROR UPDATE CONTROLLER WAREHOUSE",
+        "deleteWarehouse": "ERROR DELETE CONTROLLER WAREHOUSE"
+    },
+    "deleted": "almacén eliminado exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "WAREHOUSE NOT FOUND",
+    "notCreated": "WAREHOUSE WAS NOT REGISTERED",
+    "notUpdated": "WAREHOUSE WAS NOT UPDATED",
+    "notDeleted": "WAREHOUSE WAS NOT DELETED",
+};
+
+module.exports = { articleMessages, companyMessages, creditTransactionMessages, orderMessages, paymentMessages, priceMessages, quoteMessages, warehouseMessages };

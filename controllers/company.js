@@ -1,7 +1,7 @@
 const companyModel = require('./../models/companies');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const { CompanyMessages } = require('./../utils/handleMessages');
+const { companyMessages } = require('./../utils/handleMessages');
 
 const getCompanies = async (req, res) => {
     try {
@@ -9,7 +9,7 @@ const getCompanies = async (req, res) => {
         res.send({ companies });
 
     } catch (error) {
-        handleRequestError(res, 500, CompanyMessages.getCompanies.handleError, error);
+        handleRequestError(res, 500, companyMessages.handleError.getCompanies, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getCompany = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, CompanyMessages.getCompany.notParameters);
+            return handleRequestError(res, 400, companyMessages.notParameters);
         }
 
         const company = await companyModel.findByPk(id);
@@ -27,11 +27,11 @@ const getCompany = async (req, res) => {
             res.send({ company });
 
         } else {
-            handleRequestError(res, 404, CompanyMessages.getCompany.notFound);
+            handleRequestError(res, 404, companyMessages.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, CompanyMessages.getCompany.handleError, error);
+        handleRequestError(res, 500, companyMessages.handleError.getCompany, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createCompany = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, CompanyMessages.createCompany.notParameters);
+            return handleRequestError(res, 400, companyMessages.notParameters);
         }
 
         const company = await companyModel.create(body);
@@ -49,11 +49,11 @@ const createCompany = async (req, res) => {
             res.status(201).send({ company });
 
         } else {
-            handleRequestError(res, 404, CompanyMessages.createCompany.notRegistered);
+            handleRequestError(res, 404, companyMessages.notCreated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, CompanyMessages.createCompany.handleError, error);
+        handleRequestError(res, 500, companyMessages.handleError.createCompany, error);
     }
 };
 
@@ -63,7 +63,7 @@ const updateCompany = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, CompanyMessages.updateCompany.notParameters);
+            return handleRequestError(res, 400, companyMessages.notParameters);
         }
 
         const [updatedRows] = await companyModel.update(body, {
@@ -75,11 +75,11 @@ const updateCompany = async (req, res) => {
             res.status(200).send({ company: updatedCompany });
 
         } else {
-            handleRequestError(res, 404, CompanyMessages.updateCompany.notUpdated);
+            handleRequestError(res, 404, companyMessages.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, CompanyMessages.updateCompany.handleError, error);
+        handleRequestError(res, 500, companyMessages.handleError.updateCompany, error);
     }
 };
 
@@ -88,21 +88,21 @@ const deleteCompany = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, CompanyMessages.deleteCompany.notParameters);
+            return handleRequestError(res, 400, companyMessages.notParameters);
         }
 
         const deletedRows = await companyModel.destroy({ where: { 'c_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: CompanyMessages.deleteCompany.deleted });
+            res.status(200).send({ message: companyMessages.deleted });
 
         } else {
-            handleRequestError(res, 404, CompanyMessages.deleteCompany.notDeleted);
+            handleRequestError(res, 404, companyMessages.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, CompanyMessages.deleteCompany.handleError, error);
+        handleRequestError(res, 500, companyMessages.handleError.deleteCompany, error);
     }
 };
 

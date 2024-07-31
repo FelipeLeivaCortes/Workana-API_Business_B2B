@@ -1,15 +1,15 @@
 const orderModel = require('./../models/orders');
 const handleRequestError = require('./../utils/handleRequestError');
 
-const { OrderMessages } = require('./../utils/handleMessages');
+const { orderMessages } = require('./../utils/handleMessages');
 
 const getOrders = async (req, res) => {
     try {
-        const Orders = await orderModel.findAll();
-        res.send({Orders});
+        const orders = await orderModel.findAll();
+        res.send({ orders });
 
     } catch (error) {
-        handleRequestError(res, 500, OrderMessages.getOrders.handleError, error);
+        handleRequestError(res, 500, orderMessages.handleError.getOrders, error);
     }
 };
 
@@ -18,20 +18,20 @@ const getOrder = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, OrderMessages.getOrder.notParameters);
+            return handleRequestError(res, 400, orderMessages.notParameters);
         }
 
-        const Order = await orderModel.findByPk(id);
+        const order = await orderModel.findByPk(id);
 
-        if (Order) {
-            res.send({Order});
+        if (order) {
+            res.send({ order });
 
         } else {
-            handleRequestError(res, 404, OrderMessages.getOrder.notFound);
+            handleRequestError(res, 404, orderMessages.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, OrderMessages.getOrder.handleError, error);
+        handleRequestError(res, 500, orderMessages.handleError.getOrder, error);
     }
 };
 
@@ -40,21 +40,20 @@ const createOrder = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, OrderMessages.createOrder.notParameters);
+            return handleRequestError(res, 400, orderMessages.notParameters);
         }
 
-        const Order = await orderModel.create(body);
+        const order = await orderModel.create(body);
 
-        if (Order) {
-            res.status(201).send({ Order });
+        if (order) {
+            res.status(201).send({ order });
 
         } else {
-            handleRequestError(res, 404, OrderMessages.createOrder.notRegistered);
+            handleRequestError(res, 404, orderMessages.notCreated);
         }
-
-        
+ 
     } catch (error) {
-        handleRequestError(res, 500, OrderMessages.createOrder.handleError, error);
+        handleRequestError(res, 500, orderMessages.handleError.createOrder, error);
     }
 };
 
@@ -64,7 +63,7 @@ const updateOrder = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, OrderMessages.updateOrder.notParameters);
+            return handleRequestError(res, 400, orderMessages.notParameters);
         }
 
         const [updatedRows] = await orderModel.update(body, {
@@ -73,14 +72,14 @@ const updateOrder = async (req, res) => {
 
         if (updatedRows > 0) {
             const updatedOrder = await orderModel.findByPk(id);
-            res.status(200).send({ Order: updatedOrder });
+            res.status(200).send({ order: updatedOrder });
 
         } else {
-            handleRequestError(res, 404, OrderMessages.updateOrder.notUpdated);
+            handleRequestError(res, 404, orderMessages.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, OrderMessages.updateOrder.handleError, error);
+        handleRequestError(res, 500, orderMessages.handleError.updateOrder, error);
     }
 };
 
@@ -89,21 +88,21 @@ const deleteOrder = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, OrderMessages.deleteOrder.notParameters);
+            return handleRequestError(res, 400, orderMessages.notParameters);
         }
 
         const deletedRows = await orderModel.destroy({ where: { 'order_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: OrderMessages.deleteOrder.deleted });
+            res.status(200).send({ message: orderMessages.deleted });
 
         } else {
-            handleRequestError(res, 404, OrderMessages.deleteOrder.notDeleted);
+            handleRequestError(res, 404, orderMessages.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500, OrderMessages.deleteOrder.handleError, error);
+        handleRequestError(res, 500, orderMessages.handleError.deleteOrder, error);
     }
 };
 

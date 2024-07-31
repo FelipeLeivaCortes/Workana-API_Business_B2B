@@ -1,6 +1,6 @@
 const articleModel = require('./../models/articles');
 const handleRequestError = require('./../utils/handleRequestError');
-const { ArticleMessages } = require('./../utils/handleMessages');
+const { articleMessages } = require('./../utils/handleMessages');
 
 
 const getArticles = async (req, res) => {
@@ -9,7 +9,7 @@ const getArticles = async (req, res) => {
         res.send({ articles });
 
     } catch (error) {
-        handleRequestError(res, 500, ArticleMessages.getArticles.handleError, error);
+        handleRequestError(res, 500, articleMessages.handleError.getArticles, error);
     }
 };
 
@@ -18,7 +18,7 @@ const getArticle = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, ArticleMessages.getArticle.notParameters);
+            return handleRequestError(res, 400, articleMessages.notParameters);
         }
 
         const article = await articleModel.findByPk(id);
@@ -27,11 +27,11 @@ const getArticle = async (req, res) => {
             res.send({ article });
 
         } else {
-            handleRequestError(res, 404, ArticleMessages.getArticle.notParameters);
+            handleRequestError(res, 404, articleMessages.notFound);
         }
 
     } catch (error) {
-        handleRequestError(res, 500, ArticleMessages.getArticle.handleError, error);
+        handleRequestError(res, 500, articleMessages.handleError.getArticle, error);
     }
 };
 
@@ -40,7 +40,7 @@ const createArticle = async (req, res) => {
         const body = req.body;
         
         if (!body) {
-            return handleRequestError(res, 400, ArticleMessages.createArticle.notParameters);
+            return handleRequestError(res, 400, articleMessages.notParameters);
         }
 
         const article = await articleModel.create(body);
@@ -49,12 +49,11 @@ const createArticle = async (req, res) => {
             res.status(201).send({ article });
 
         } else {
-            handleRequestError(res, 404, ArticleMessages.createArticle.notRegistered);
+            handleRequestError(res, 404, articleMessages.notCreated);
         }
 
-        
     } catch (error) {
-        handleRequestError(res, 500, ArticleMessages.createArticle.handleError, error);
+        handleRequestError(res, 500, articleMessages.handleError.createArticle, error);
     }
 };
 
@@ -64,7 +63,7 @@ const updateArticle = async (req, res) => {
         const body = req.body;
 
         if (!id || !body) {
-            return handleRequestError(res, 400, ArticleMessages.updateArticle.notParameters);
+            return handleRequestError(res, 400, articleMessages.notParameters);
         }
 
         const [updatedRows] = await articleModel.update(body, {
@@ -76,11 +75,11 @@ const updateArticle = async (req, res) => {
             res.status(200).send({ article: updatedArticle });
 
         } else {
-            handleRequestError(res, 404, ArticleMessages.updateArticle.notUpdated);
+            handleRequestError(res, 404, articleMessages.notUpdated);
         }
         
     } catch (error) {
-        handleRequestError(res, 500, ArticleMessages.updateArticle.handleError, error);
+        handleRequestError(res, 500, articleMessages.handleError.updateArticle, error);
     }
 };
 
@@ -89,21 +88,21 @@ const deleteArticle = async (req, res) => {
         const { id } = req.params;
 
         if (!id) {
-            return handleRequestError(res, 400, ArticleMessages.deleteArticle.notParameters);
+            return handleRequestError(res, 400, articleMessages.notParameters);
         }
 
         const deletedRows = await articleModel.destroy({ where: { 'ar_id': id } });
 
         if (deletedRows > 0) {
-            res.status(200).send({ message: ArticleMessages.deleteArticle.deleted });
+            res.status(200).send({ message: articleMessages.deleted });
 
         } else {
-            handleRequestError(res, 404, ArticleMessages.deleteArticle.notDeleted);
+            handleRequestError(res, 404, articleMessages.notDeleted);
 
         }
         
     } catch (error) {
-        handleRequestError(res, 500,ArticleMessages.deleteArticle.handleError, error);
+        handleRequestError(res, 500,articleMessages.handleError.deleteArticle, error);
     }
 };
 

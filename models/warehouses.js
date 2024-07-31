@@ -8,7 +8,8 @@ const Warehouse = sequelize.define(
         wh_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         wh_name: {
             type: DataTypes.STRING,

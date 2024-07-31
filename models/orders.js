@@ -8,7 +8,8 @@ const Order = sequelize.define(
         order_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         order_name: {
             type: DataTypes.STRING,

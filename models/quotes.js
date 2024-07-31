@@ -8,7 +8,8 @@ const Quote = sequelize.define(
         quo_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         quo_name: {
             type: DataTypes.STRING,
