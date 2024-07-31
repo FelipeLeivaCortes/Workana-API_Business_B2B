@@ -23,7 +23,7 @@ app.use('/api', require(`./routes/`));
 
 if (NODE_ENV !== 'test') {
     app.listen(port);
-    dbConnect();
+    dbConnect(); 
 }
 
 
