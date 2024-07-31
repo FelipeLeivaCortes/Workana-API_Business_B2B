@@ -105,7 +105,6 @@ const deleteCompany = async (req, res) => {
     } catch (error) {
         handleRequestError(res, 500, CompanyMessages.deleteCompany.handleError, error);
     }
-
 };
 
-module.exports = { getCompanies, getCompany, createCompany, updateCompany, deleteCompany }
+module.exports = { createCompany, updateCompany }

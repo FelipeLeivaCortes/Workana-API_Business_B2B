@@ -13,7 +13,6 @@ const Price = sequelize.define(
         },
         ar_id: {
             type: DataTypes.INTEGER,
-            
             allowNull: false
         },
         wh_id: {

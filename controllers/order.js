@@ -105,7 +105,6 @@ const deleteOrder = async (req, res) => {
     } catch (error) {
         handleRequestError(res, 500, OrderMessages.deleteOrder.handleError, error);
     }
-
 };
 
-module.exports = { getOrders, getOrder, createOrder, updateOrder, deleteOrder }
+module.exports = { getOrders, getOrder, createOrder, updateOrder }

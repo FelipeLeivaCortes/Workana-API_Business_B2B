@@ -105,7 +105,6 @@ const deleteQuote = async (req, res) => {
     } catch (error) {
         handleRequestError(res, 500, QuoteMessages.deleteQuote.handleError, error);
     }
-
 };
 
-module.exports = { getQuotes, getQuote, createQuote, updateQuote, deleteQuote }
+module.exports = { getQuotes, getQuote, createQuote, updateQuote}

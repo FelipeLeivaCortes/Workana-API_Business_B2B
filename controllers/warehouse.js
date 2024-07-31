@@ -108,4 +108,4 @@ const deleteWarehouse = async (req, res) => {
 
 };
 
-module.exports = { getWarehouses, getWarehouse, createWarehouse, updateWarehouse, deleteWarehouse }
+module.exports = { createWarehouse, updateWarehouse }

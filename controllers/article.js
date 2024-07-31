@@ -38,7 +38,7 @@ const getArticle = async (req, res) => {
 const createArticle = async (req, res) => {
     try {
         const body = req.body;
-
+        
         if (!body) {
             return handleRequestError(res, 400, ArticleMessages.createArticle.notParameters);
         }
@@ -105,7 +105,6 @@ const deleteArticle = async (req, res) => {
     } catch (error) {
         handleRequestError(res, 500,ArticleMessages.deleteArticle.handleError, error);
     }
-
 };
 
-module.exports = { getArticles, getArticle, createArticle, updateArticle, deleteArticle }
+module.exports = { createArticle, updateArticle }

@@ -40,7 +40,7 @@ const createPrice = async (req, res) => {
         const body = req.body;
 
         if (!body) {
-            return handleRequestError(res, 400, PriceMessages.getPrice.notParameters);
+            return handleRequestError(res, 400, PriceMessages.createPrice.notParameters);
         }
 
         const Price = await priceModel.create(body);
@@ -105,7 +105,6 @@ const deletePrice = async (req, res) => {
     } catch (error) {
         handleRequestError(res, 500, PriceMessages.deletePrice.handleError, error);
     }
-
 };
 
-module.exports = { getPrices, getPrice, createPrice, updatePrice, deletePrice }
+module.exports = { updatePrice }

@@ -4,7 +4,7 @@
   "description": "API Desarrolla para la administración de registros en la base de datos.",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "cross-env NODE_ENV=test jest",
     "dev": "nodemon app.js"
   },
   "repository": {
@@ -21,16 +21,20 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-validator": "^7.1.0",
     "mysql2": "^3.11.0",
     "nodemon": "^3.1.4",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jest": "^29.7.0",
     "supertest": "^7.0.0"
   },
   "jest": {
-    "testEnviroment": "node",
+    "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules"
     ]
