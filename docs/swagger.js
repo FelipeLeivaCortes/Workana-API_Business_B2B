@@ -13,7 +13,7 @@ const swaggerDefinition = {
             url: `http://localhost:${process.env.APP_PORT}/api`
         },
         {
-            url: `https://mantencionembalses.com/api`
+            url: `https://mantencionembalses.com/workana/business_b2b/api`
         }
     ],
     components: {
@@ -25,10 +25,9 @@ const swaggerDefinition = {
             }
         },
         schemas: {
-            article: {
+            articulo: {
                 type: "object",
                 required: [
-                    "ar_id",
                     "ar_name",
                     "ar_desc",
                     "ar_code",
@@ -38,7 +37,6 @@ const swaggerDefinition = {
                     "cat_id"
                 ],
                 properties: {
-                    ar_id: { type: "integer" },
                     ar_name: { type: "string" },
                     ar_desc: { type: "string" },
                     ar_code: { type: "string" },
@@ -53,15 +51,13 @@ const swaggerDefinition = {
                     status_id: { type: "integer" }
                 }
             },
-            company: {
+            cliente: {
                 type: "object",
                 required: [
-                    "c_id",
                     "created_at",
                     "status_id"
                 ],
                 properties: {
-                    c_id: { type: "integer" },
                     c_name: { type: "string" },
                     c_desc: { type: "string" },
                     c_num_nit: { type: "string" },
@@ -91,10 +87,9 @@ const swaggerDefinition = {
                     s_id: { type: "integer" }
                 }
             },
-            order: {
+            orden_venta: {
                 type: "object",
                 required: [
-                    "order_id",
                     "order_name",
                     "order_desc",
                     "order_date",
@@ -109,7 +104,6 @@ const swaggerDefinition = {
                     "u_id"
                 ],
                 properties: {
-                    order_id: { type: "integer" },
                     order_name: { type: "string" },
                     order_desc: { type: "string" },
                     order_date: { type: "string", format: "date-time" },
@@ -128,25 +122,22 @@ const swaggerDefinition = {
                     order_state_id: { type: "integer" }
                 }
             },
-            price: {
+            lista_precio: {
                 type: "object",
                 required: [
-                    "p_id",
                     "ar_id",
                     "wh_id",
                     "p_value"
                 ],
-                properties: { 
-                    p_id: { type: "integer" },
+                properties: {
                     ar_id: { type: "integer" },
                     wh_id: { type: "integer" },
                     p_value: { type: "number", format: "float" }
                 }
             },
-            quote: {
+            oferta_venta: {
                 type: "object",
                 required: [
-                    "quo_id",
                     "quo_name",
                     "quo_desc",
                     "quo_date",
@@ -163,7 +154,6 @@ const swaggerDefinition = {
                     "u_id"
                 ],
                 properties: {
-                    quo_id: { type: "integer" },
                     quo_name: { type: "string" },
                     quo_desc: { type: "string" },
                     quo_date: { type: "string", format: "date-time" }, // Cambiado de "datetime" a "string" con formato "date-time"
@@ -184,14 +174,12 @@ const swaggerDefinition = {
                     quote_state_id: { type: "integer" }
                 }
             },
-            warehouse: {
+            almacen: {
                 type: "object",
                 required: [
-                    "wh_id",
                     "c_id"
                 ],
                 properties: {
-                    wh_id: { type: "integer" },
                     wh_name: { type: "string" },
                     wh_desc: { type: "string" },
                     wh_code: { type: "string" },
@@ -203,12 +191,27 @@ const swaggerDefinition = {
                     wh_phone: { type: "string" },
                     c_id: { type: "integer" }
                 }
+            },
+            metodo_pago: {
+                type: "object",
+                required: [],
+                properties: {
+                    name: { type: "string"}
+                }
             }
         }
     },
     security: [
         {
-            ApiKeyAuth: ["article", "company", "order", "price", "quote", "warehouse"]
+            ApiKeyAuth: [
+                "articulos",
+                "clientes",
+                "ordenes_venta",
+                "lista_precios",
+                "oferta_ventas",
+                "almacenes",
+                "metodo_pago"
+            ]
         }
     ]
 };

@@ -62,7 +62,7 @@ const { createArticle, updateArticle } = require('./../controllers/article');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/article"
+ *             $ref: "#/components/schemas/articulo"
  *     responses:
  *       '201':
  *         description: "Artículo creado exitosamente"
@@ -93,7 +93,7 @@ const { createArticle, updateArticle } = require('./../controllers/article');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/article"
+ *             $ref: "#/components/schemas/articulo"
  *     responses:
  *       '200':
  *         description: "Artículo actualizado exitosamente"

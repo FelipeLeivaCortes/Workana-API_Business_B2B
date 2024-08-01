@@ -61,7 +61,7 @@ const { createPayment } = require('./../controllers/payment');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Payment"
+ *             $ref: "#/components/schemas/metodo_pago"
  *     responses:
  *       '201':
  *         description: "Pago creado exitosamente"
@@ -92,7 +92,7 @@ const { createPayment } = require('./../controllers/payment');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/Payment"
+ *             $ref: "#/components/schemas/metodo_pago"
  *     responses:
  *       '200':
  *         description: "Pago actualizado exitosamente"

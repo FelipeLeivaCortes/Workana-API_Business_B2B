@@ -29,7 +29,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes/{id}:
  *   get:
  *     tags:
- *       - Oferta de Ventas
+ *       - Ofertas de Venta
  *     summary: "Obtener una cotización por ID"
  *     description: "Obtiene los detalles de una cotización específica por su ID"
  *     parameters:
@@ -55,14 +55,14 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes:
  *   post:
  *     tags:
- *       - Oferta de Ventas
+ *       - Ofertas de Venta
  *     summary: "Crear una nueva cotización"
  *     description: "Crea una nueva cotización con la información proporcionada"
  *     requestBody:
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/quote"
+ *             $ref: "#/components/schemas/oferta_venta"
  *     responses:
  *       '201':
  *         description: "Cotización creada exitosamente"
@@ -79,7 +79,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes/{id}:
  *   put:
  *     tags:
- *       - Oferta de Ventas
+ *       - Ofertas de Venta
  *     summary: "Actualizar una cotización"
  *     description: "Actualiza la información de una cotización específica por su ID"
  *     parameters:
@@ -93,7 +93,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/quote"
+ *             $ref: "#/components/schemas/oferta_venta"
  *     responses:
  *       '200':
  *         description: "Cotización actualizada exitosamente"
@@ -112,7 +112,7 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  * /quotes/{id}:
  *   delete:
  *     tags:
- *       - Oferta de Ventas
+ *       - Ofertas de Venta
  *     summary: "Eliminar una cotización"
  *     description: "Elimina una cotización específica por su ID"
  *     parameters:

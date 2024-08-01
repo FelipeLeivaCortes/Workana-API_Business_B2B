@@ -12,7 +12,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  * /orders:
  *   get:
  *     tags:
- *       - Órdenes de Ventas
+ *       - Órdenes de Venta
  *     summary: "Obtener lista de Órdenes"
  *     description: "Obtiene un listado de todas las órdenes registradas"
  *     responses:
@@ -62,7 +62,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/order"
+ *             $ref: "#/components/schemas/orden_venta"
  *     responses:
  *       '201':
  *         description: "Orden creada exitosamente"
@@ -93,7 +93,7 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/order"
+ *             $ref: "#/components/schemas/orden_venta"
  *     responses:
  *       '200':
  *         description: "Orden actualizada exitosamente"

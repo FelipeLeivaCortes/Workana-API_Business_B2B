@@ -60,7 +60,7 @@ const { updatePrice } = require('./../controllers/price');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/price"
+ *             $ref: "#/components/schemas/lista_precios"
  *     responses:
  *       '201':
  *         description: "Precio creado exitosamente"
@@ -91,7 +91,7 @@ const { updatePrice } = require('./../controllers/price');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/price"
+ *             $ref: "#/components/schemas/lista_precios"
  *     responses:
  *       '200':
  *         description: "Precio actualizado exitosamente"

@@ -62,7 +62,7 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/company"
+ *             $ref: "#/components/schemas/cliente"
  *     responses:
  *       '201':
  *         description: "Cliente creado exitosamente"
@@ -93,7 +93,7 @@ const { createCompany, updateCompany } = require('./../controllers/company');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/company"
+ *             $ref: "#/components/schemas/cliente"
  *     responses:
  *       '200':
  *         description: "Cliente actualizado exitosamente"

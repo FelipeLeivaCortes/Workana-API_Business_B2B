@@ -62,7 +62,7 @@ const { createWarehouse, updateWarehouse } = require('./../controllers/warehouse
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/warehouse"
+ *             $ref: "#/components/schemas/almacen"
  *     responses:
  *       '201':
  *         description: "Almacén creado exitosamente"
@@ -93,7 +93,7 @@ const { createWarehouse, updateWarehouse } = require('./../controllers/warehouse
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/warehouse"
+ *             $ref: "#/components/schemas/almacen"
  *     responses:
  *       '200':
  *         description: "Almacén actualizado exitosamente"
