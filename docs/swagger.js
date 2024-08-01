@@ -13,7 +13,7 @@ const swaggerDefinition = {
             url: `http://localhost:${process.env.APP_PORT}/api`
         },
         {
-            url: `https://mantencionembalses.com/workana/business_b2b/api`
+            url: `https://github.mantencionembalses.com/api`
         }
     ],
     components: {
