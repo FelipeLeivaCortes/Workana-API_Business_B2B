@@ -12,8 +12,8 @@ Business_B2B es una API desarrollada en Node.js con Express para gestionar opera
 
 1. Clona el repositorio:
     ```
-    git clone https://github.com/tu-usuario/Business_B2B.git
-    cd Business_B2B
+    git clone https://github.com/FelipeLeivaCortes/Workana-API_Business_B2B.git
+    cd Workana-API_Business_B2B
     ```
 
 2. Instala las dependencias:
