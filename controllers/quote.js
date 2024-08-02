@@ -1,5 +1,6 @@
 const quoteModel = require('./../models/quote');
 const articleModel = require('./../models/article');
+const quoteArticleModel = require('./../models/quote_article');
 
 const handleRequestError = require('./../utils/handleRequestError');
 const isValidDate = require('./../utils/handleDates');
@@ -55,7 +56,18 @@ const getQuote = async (req, res) => {
         const quote = await quoteModel.findByPk(id, {
             include: [{
                 model: articleModel,
-                through: { attributes: [] } // Esto excluye los datos de la tabla intermedia
+                through: {
+                    model: quoteArticleModel,
+                    attributes: [
+                        'quoart_id',
+                        'quo_id',
+                        'ar_id',
+                        'quoart_quantity',
+                        'quoart_pricenormal',
+                        'quoart_discountPercentajeOrPrice',
+                        'quoart_discountPrice'
+                    ]
+                }
             }]
         });
 

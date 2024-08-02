@@ -1,5 +1,6 @@
 const orderModel = require('./../models/order');
 const articleModel = require('./../models/article');
+const orderArticleModel = require('./../models/order_article');
 
 const handleRequestError = require('./../utils/handleRequestError');
 const isValidDate = require('./../utils/handleDates');
@@ -55,7 +56,18 @@ const getOrder = async (req, res) => {
         const order = await orderModel.findByPk(id, {
             include: [{
                 model: articleModel,
-                through: { attributes: [] } // Esto excluye los datos de la tabla intermedia
+                through: {
+                    model: orderArticleModel,
+                    attributes: [
+                        'orderart_id',
+                        'order_id',
+                        'ar_id',
+                        'orderart_quantity',
+                        'orderart_pricenormal',
+                        'orderart_discountPercentajeOrPrice',
+                        'orderart_discountPrice'
+                    ]
+                }
             }]
         });
 
