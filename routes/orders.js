@@ -15,6 +15,21 @@ const { getOrders, getOrder, createOrder, updateOrder } = require('./../controll
  *       - Órdenes de Venta
  *     summary: "Obtener lista de Órdenes"
  *     description: "Obtiene un listado de todas las órdenes registradas"
+ *     parameters:
+ *       - in: query
+ *         name: from
+ *         schema:
+ *           type: string
+ *           format: date
+ *         required: true
+ *         description: "Fecha de inicio en formato YYYY-MM-DD"
+ *       - in: query
+ *         name: to
+ *         schema:
+ *           type: string
+ *           format: date
+ *         required: false
+ *         description: "Fecha de fin en formato YYYY-MM-DD. Si no se proporciona, se usará la fecha actual."
  *     responses:
  *       '200':
  *         description: "OK"

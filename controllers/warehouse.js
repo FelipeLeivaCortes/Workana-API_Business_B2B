@@ -1,4 +1,4 @@
-const warehouseModel = require('./../models/warehouses');
+const warehouseModel = require('./../models/warehouse');
 const handleRequestError = require('./../utils/handleRequestError');
 
 const { warehouseMessages } = require('./../utils/handleMessages');

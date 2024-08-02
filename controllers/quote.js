@@ -1,11 +1,42 @@
-const quoteModel = require('./../models/quotes');
-const handleRequestError = require('./../utils/handleRequestError');
+const quoteModel = require('./../models/quote');
+const articleModel = require('./../models/article');
 
+const handleRequestError = require('./../utils/handleRequestError');
+const isValidDate = require('./../utils/handleDates');
+const { parseISO, formatISO } = require('date-fns');
+
+const { Op } = require('sequelize');
 const { quoteMessages } = require('./../utils/handleMessages');
+
 
 const getQuotes = async (req, res) => {
     try {
-        const quotes = await quoteModel.findAll();
+        let { from, to } = req.query;
+    
+        if (!isValidDate(from)) {
+            return handleRequestError(res, 400, 'ERROR FROM DATE');
+        }
+
+        from = formatISO(parseISO(`${from}T00:00:00Z`));
+        
+        if (!to || !isValidDate(to)) {
+            const endOfDay = new Date();
+            endOfDay.setUTCHours(23, 59, 59, 999);
+
+            to = endOfDay.toISOString();
+        } else {
+            to = formatISO(parseISO(`${to}T23:59:59Z`));
+        }
+
+        const quotes = await quoteModel.findAll({
+            where: {
+                quo_date: {
+                    [Op.gte]: from,
+                    [Op.lte]: to,
+                }
+            }
+        });
+
         res.send({ quotes });
 
     } catch (error) {
@@ -21,7 +52,12 @@ const getQuote = async (req, res) => {
             return handleRequestError(res, 400, quoteMessages.notParameters);
         }
 
-        const quote = await quoteModel.findByPk(id);
+        const quote = await quoteModel.findByPk(id, {
+            include: [{
+                model: articleModel,
+                through: { attributes: [] } // Esto excluye los datos de la tabla intermedia
+            }]
+        });
 
         if (quote) {
             res.send({ quote });

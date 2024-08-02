@@ -4,8 +4,9 @@
   "description": "API Desarrolla para la administración de registros en la base de datos.",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "test": "cross-env NODE_ENV=test jest",
-    "dev": "nodemon app.js"
+    "start": "cross-env NODE_ENV=production node app.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/FelipeLeivaCortes/Workana-API_Business_B2B#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",

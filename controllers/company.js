@@ -1,4 +1,4 @@
-const companyModel = require('./../models/companies');
+const companyModel = require('./../models/company');
 const handleRequestError = require('./../utils/handleRequestError');
 
 const { companyMessages } = require('./../utils/handleMessages');

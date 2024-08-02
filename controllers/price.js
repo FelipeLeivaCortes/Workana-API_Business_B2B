@@ -1,4 +1,4 @@
-const priceModel = require('./../models/prices');
+const priceModel = require('./../models/price');
 const handleRequestError = require('./../utils/handleRequestError');
 
 const { priceMessages } = require('./../utils/handleMessages');

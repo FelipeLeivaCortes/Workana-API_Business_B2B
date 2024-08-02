@@ -15,6 +15,21 @@ const { getQuotes, getQuote, createQuote, updateQuote } = require('./../controll
  *       - Ofertas de Venta
  *     summary: "Obtener lista de Cotizaciones"
  *     description: "Obtiene un listado de todas las cotizaciones registradas"
+ *     parameters:
+ *       - in: query
+ *         name: from
+ *         schema:
+ *           type: string
+ *           format: date
+ *         required: true
+ *         description: "Fecha de inicio en formato YYYY-MM-DD"
+ *       - in: query
+ *         name: to
+ *         schema:
+ *           type: string
+ *           format: date
+ *         required: false
+ *         description: "Fecha de fin en formato YYYY-MM-DD. Si no se proporciona, se usará la fecha actual."
  *     responses:
  *       '200':
  *         description: "OK"

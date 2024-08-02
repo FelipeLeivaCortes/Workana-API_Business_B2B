@@ -1,4 +1,4 @@
-const articleModel = require('./../models/articles');
+const articleModel = require('./../models/article');
 const handleRequestError = require('./../utils/handleRequestError');
 const { articleMessages } = require('./../utils/handleMessages');
 

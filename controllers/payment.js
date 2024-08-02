@@ -1,4 +1,4 @@
-const paymentModel = require('./../models/warehouses');
+const paymentModel = require('./../models/warehouse');
 const handleRequestError = require('./../utils/handleRequestError');
 
 const { paymentMessages } = require('./../utils/handleMessages');

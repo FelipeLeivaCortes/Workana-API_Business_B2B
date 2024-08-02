@@ -44,7 +44,6 @@ const creditTransactionMessages = {
     "notCreated": "CREDIT TRANSACTION WAS NOT REGISTERED",
     "notUpdated": "CREDIT TRANSACTION WAS NOT UPDATED",
     "notDeleted": "CREDIT TRANSACTION WAS NOT DELETED",
-    "deleted": "CREDIT TRANSACTION SUCCESSFULLY DELETED"
 };
 
 const orderMessages = {
@@ -101,7 +100,7 @@ const quoteMessages = {
         "getQuote": "ERROR GET CONTROLLER QUOTE",
         "createQuote": "ERROR CREATE CONTROLLER QUOTE",
         "updateQuote": "ERROR UPDATE CONTROLLER QUOTE",
-        "deleteQuote": "ERROR DELETE CONTROLLER QUOTE"
+        "deleteQuote": "ERROR DELETE CONTROLLER QUOTE",
     },
     "deleted": "Oferta de venta eliminada exitosamente",
     "notParameters": "NOT FOUND ALL PARAMETERS",
