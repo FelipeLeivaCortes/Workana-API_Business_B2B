@@ -97,3 +97,7 @@ Para desplegar la aplicación en producción, sigue estos pasos:
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 Este archivo README.md ahora incluye la configuración para MySQL. Asegúrate de ajustar los detalles específicos de tu proyecto según sea necesario. Si necesitas más ayuda, ¡házmelo saber!
+
+
+## Colaborador
+Felipe Leiva Cortés
