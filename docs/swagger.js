@@ -13,15 +13,14 @@ const swaggerDefinition = {
             url: `http://localhost:${process.env.APP_PORT}/api`
         },
         {
-            url: `https://workana.businessb2b.mantencionembalses.com/api`
+            url: `https://api.businessandconnection.com/api`
         }
     ],
     components: {
         securitySchemes: {
-            ApiKeyAuth: {
-                type: "apiKey",
-                in: "header",
-                name: "api_key"
+            BearerAuth: {
+                type: 'http',
+                scheme: 'bearer'
             }
         },
         schemas: {
@@ -156,15 +155,15 @@ const swaggerDefinition = {
                 properties: {
                     quo_name: { type: "string" },
                     quo_desc: { type: "string" },
-                    quo_date: { type: "string", format: "date-time" }, // Cambiado de "datetime" a "string" con formato "date-time"
+                    quo_date: { type: "string", format: "date-time" },
                     quo_payment_method: { type: "string" },
                     quo_company: { type: "string" },
                     quo_shipping_address: { type: "string" },
                     quo_email: { type: "string" },
-                    quo_phone: { type: "string" }, // Cambiado de "integer" a "string"
+                    quo_phone: { type: "string" },
                     quo_comments: { type: "string" },
                     quo_cedula_nit: { type: "string" },
-                    quo_subtotal: { type: "number", format: "float" }, // Cambiado de "decimal" a "number" con formato "float"
+                    quo_subtotal: { type: "number", format: "float" },
                     quo_iva: { type: "number", format: "float" },
                     quo_total: { type: "number", format: "float" },
                     quo_discount_total: { type: "number", format: "float" },
@@ -186,7 +185,7 @@ const swaggerDefinition = {
                     wh_address: { type: "string" },
                     wh_departament: { type: "string" },
                     wh_city: { type: "string" },
-                    wh_date: { type: "string", format: "date-time" }, // Cambiado de "string" a "string" con formato "date-time"
+                    wh_date: { type: "string", format: "date-time" },
                     wh_responsible: { type: "string" },
                     wh_phone: { type: "string" },
                     c_id: { type: "integer" }
@@ -203,7 +202,7 @@ const swaggerDefinition = {
     },
     security: [
         {
-            ApiKeyAuth: [
+            BearerAuth: [
                 "articulos",
                 "clientes",
                 "ordenes_venta",
