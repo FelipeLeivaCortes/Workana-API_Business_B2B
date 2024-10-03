@@ -47,7 +47,7 @@ class Article extends Model {
             },
             cat_id: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: true
             },
             sbcat_id: {
                 type: DataTypes.INTEGER,

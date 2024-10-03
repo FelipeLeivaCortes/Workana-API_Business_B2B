@@ -11,7 +11,7 @@ const validatorCreateItem = [
     check('ar_img_url').exists().notEmpty().isString(),
     check('ar_data_url').isString().optional({nullable: true}),
     check('mt_id').exists().notEmpty().isInt(),
-    check('cat_id').exists().notEmpty().isInt(),
+    check('cat_id').isInt().optional({nullable: true}),
     check('sbcat_id').isInt().optional({nullable: true}),
     check('status_id').isInt().optional({nullable: true}),
 
