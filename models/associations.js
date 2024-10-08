@@ -16,6 +16,7 @@ module.exports = (sequelize) => {
 
     quoteArticle.belongsTo(quote, { foreignKey: 'quo_id' });
     quoteArticle.belongsTo(article, { foreignKey: 'ar_id' });
+    
     quote.hasMany(quoteArticle, { foreignKey: 'quo_id' });
     article.hasMany(quoteArticle, { foreignKey: 'ar_id' });
 };

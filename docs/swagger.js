@@ -100,6 +100,8 @@ const swaggerDefinition = {
                     "order_subtotal",
                     "order_iva",
                     "order_total",
+                    "order_discount_total",
+                    "order_addition_cost",
                     "u_id"
                 ],
                 properties: {
@@ -116,6 +118,8 @@ const swaggerDefinition = {
                     order_subtotal: { type: "number", format: "float" },
                     order_iva: { type: "number", format: "float" },
                     order_total: { type: "number", format: "float" },
+                    order_discount_total: { type: "number", format: "float" },
+                    order_addition_cost: { type: "number", format: "float" },
                     order_url_document: { type: "string" },
                     u_id: { type: "integer" },
                     order_state_id: { type: "integer" }

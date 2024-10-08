@@ -61,6 +61,14 @@ class Order extends Model {
                 type: DataTypes.DECIMAL(10, 2),
                 allowNull: false
             },
+            order_discount_total: {
+                type: DataTypes.DECIMAL(10, 2),
+                allowNull: false
+            },
+            order_addition_cost: {
+                type: DataTypes.DECIMAL(10, 2),
+                allowNull: false
+            },
             order_url_document: {
                 type: DataTypes.STRING,
                 allowNull: true
@@ -76,7 +84,7 @@ class Order extends Model {
         }, {
             sequelize,
             modelName: 'order',
-            tableName: 'order',
+            tableName: 'orders',
             timestamps: false
         });
     }

@@ -15,6 +15,8 @@ const validatorCreateItem = [
     check('order_subtotal').exists().notEmpty().isFloat(),
     check('order_iva').exists().notEmpty().isFloat(),
     check('order_total').exists().notEmpty().isFloat(),
+    check('order_discount_total').exists().notEmpty().isFloat(),
+    check('order_addition_cost').exists().notEmpty().isFloat(),
     check('order_url_document').optional({nullable: true}).isString(),
     check('u_id').exists().notEmpty().isInt(),
     check('order_state_id').optional({nullable: true}).isInt(),
