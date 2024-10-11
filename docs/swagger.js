@@ -125,7 +125,7 @@ const swaggerDefinition = {
                     order_state_id: { type: "integer" }
                 }
             },
-            lista_precio: {
+            lista_precios: {
                 type: "object",
                 required: [
                     "ar_id",
