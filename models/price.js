@@ -22,6 +22,10 @@ const Price = sequelize.define(
         p_value: {
             type: DataTypes.FLOAT,
             allowNull: false
+        },
+        id_sap: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         timestamps: false,

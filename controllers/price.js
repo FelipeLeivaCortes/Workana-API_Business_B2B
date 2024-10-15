@@ -15,19 +15,24 @@ const getPrices = async (req, res) => {
 
 const getPrice = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id_sap } = req.params;
 
-        if (!id) {
+        if (!id_sap) {
             return handleRequestError(res, 400, priceMessages.notParameters);
         }
 
-        const price = await priceModel.findByPk(id);
+        const price = await priceModel.findAll({
+            where: {
+                id_sap: id_sap
+            }
+        });
 
         if (price) {
             res.send({ price });
 
         } else {
             handleRequestError(res, 404, priceMessages.notFound);
+            
         }
 
     } catch (error) {
@@ -106,4 +111,4 @@ const deletePrice = async (req, res) => {
     }
 };
 
-module.exports = { updatePrice }
+module.exports = { getPrice, updatePrice }

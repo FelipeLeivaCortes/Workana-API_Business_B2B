@@ -2,8 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-const { updateItemMiddleware } = require('./../middlewares/price');
-const { updatePrice } = require('./../controllers/price');
+const { showItemMiddleware, updateItemMiddleware } = require('./../middlewares/price');
+const { getPrice, updatePrice } = require('./../controllers/price');
 
 /**
  * openapi
@@ -23,18 +23,18 @@ const { updatePrice } = require('./../controllers/price');
  */
 
 /**
- * openapi
- * /prices/{id}:
+ * @openapi
+ * /prices/{id_sap}:
  *   get:
  *     tags:
  *       - Lista de Precios
- *     summary: "Obtener un precio por ID"
- *     description: "Obtiene los detalles de un precio específico por su ID"
+ *     summary: "Obtener un precio por ID SAP"
+ *     description: "Obtiene los detalles de un precio específico por el ID SAP"
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: "ID del precio"
+ *         description: "ID SAP del precio"
  *         schema:
  *           type: string
  *     responses:
@@ -131,11 +131,11 @@ const { updatePrice } = require('./../controllers/price');
  *         description: "Error del servidor"
  */
 
+router.get('/:id_sap', showItemMiddleware, getPrice);
 router.put('/:id', updateItemMiddleware, updatePrice);
 
 /**
 router.get('/', ApiKeyMiddleware, getPrices);
-router.get('/:id', ApiKeyMiddleware, getPrice);
 router.post('/', ApiKeyMiddleware, validatorCreateItem, createPrice);
 router.delete('/:id', ApiKeyMiddleware, deletePrice);
  */

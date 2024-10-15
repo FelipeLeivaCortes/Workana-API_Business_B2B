@@ -130,12 +130,14 @@ const swaggerDefinition = {
                 required: [
                     "ar_id",
                     "wh_id",
-                    "p_value"
+                    "p_value",
+                    "id_sap"
                 ],
                 properties: {
                     ar_id: { type: "integer" },
                     wh_id: { type: "integer" },
-                    p_value: { type: "number", format: "float" }
+                    p_value: { type: "number", format: "float" },
+                    id_sap: { type: "string" },
                 }
             },
             oferta_venta: {
