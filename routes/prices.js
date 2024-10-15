@@ -32,7 +32,7 @@ const { getPrice, updatePrice } = require('./../controllers/price');
  *     description: "Obtiene los detalles de un precio específico por el ID SAP"
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: id_sap
  *         required: true
  *         description: "ID SAP del precio"
  *         schema:
