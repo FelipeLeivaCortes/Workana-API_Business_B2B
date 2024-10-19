@@ -74,17 +74,17 @@ const { getPrice, updatePrice } = require('./../controllers/price');
 
 /**
  * @openapi
- * /prices/{id}:
+ * /prices/{id_sap}:
  *   put:
  *     tags:
  *       - Lista de Precios
- *     summary: "Actualizar un precio"
- *     description: "Actualiza la información de un precio específico por su ID"
+ *     summary: "Actualizar un precio por el ID SAP"
+ *     description: "Actualiza la información de un precio específico por su ID SAP"
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: id_sap
  *         required: true
- *         description: "ID del precio"
+ *         description: "ID SAP del precio"
  *         schema:
  *           type: string
  *     requestBody:
@@ -132,7 +132,7 @@ const { getPrice, updatePrice } = require('./../controllers/price');
  */
 
 router.get('/:id_sap', showItemMiddleware, getPrice);
-router.put('/:id', updateItemMiddleware, updatePrice);
+router.put('/:id_sap', updateItemMiddleware, updatePrice);
 
 /**
 router.get('/', ApiKeyMiddleware, getPrices);
