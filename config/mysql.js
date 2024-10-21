@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 
 const database = process.env.NODE_ENV == 'test' ? process.env.DB_DATABASE_TEST : process.env.DB_DATABASE_DEV;
 
-const username = process.env.DB_USER;
+const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 const host = process.env.DB_HOST;
 const port = process.env.DB_PORT;

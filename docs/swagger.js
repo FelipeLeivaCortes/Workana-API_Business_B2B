@@ -5,7 +5,7 @@ const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerDefinition = {
     openapi: "3.0.0",
     info: {
-        title: "Documentación API B2B",
+        title: "Documentación API Portal BYC",
         version: "1.0.0"
     },
     servers: [
