@@ -126,4 +126,30 @@ const warehouseMessages = {
     "notDeleted": "WAREHOUSE WAS NOT DELETED",
 };
 
-module.exports = { articleMessages, companyMessages, creditTransactionMessages, orderMessages, paymentMessages, priceMessages, quoteMessages, warehouseMessages };
+const stockMessages = {
+    "handleError": {
+        "getAll": "ERROR GET CONTROLLER STOCKS",
+        "get": "ERROR GET CONTROLLER STOCK",
+        "create": "ERROR CREATE CONTROLLER STOCK",
+        "update": "ERROR UPDATE CONTROLLER STOCK",
+        "delete": "ERROR DELETE CONTROLLER STOCK"
+    },
+    "deleted": "stock eliminado exitosamente",
+    "notParameters": "NOT FOUND ALL PARAMETERS",
+    "notFound": "STOCK NOT FOUND",
+    "notCreated": "STOCK WAS NOT REGISTERED",
+    "notUpdated": "STOCK WAS NOT UPDATED",
+    "notDeleted": "STOCK WAS NOT DELETED",
+};
+
+module.exports = {
+    articleMessages,
+    companyMessages,
+    creditTransactionMessages,
+    orderMessages,
+    paymentMessages,
+    priceMessages,
+    quoteMessages,
+    warehouseMessages,
+    stockMessages
+};

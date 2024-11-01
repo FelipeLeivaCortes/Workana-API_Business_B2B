@@ -64,6 +64,7 @@ const createArticle = async (req, res) => {
                     await articleModel.destroy({ where: { 'ar_id': article.ar_id } });
                     handleRequestError(res, 404, priceMessages.notCreated);
                 }
+                
             } catch (error) {
                 await articleModel.destroy({ where: { 'ar_id': article.ar_id } });
 

@@ -203,6 +203,25 @@ const swaggerDefinition = {
                 properties: {
                     name: { type: "string"}
                 }
+            },
+            stock: {
+                type: "object",
+                required: [
+                    "stock_Quantity",
+                    "id_sap_warehouse"
+                ],
+                properties: {
+                    stock_name: { type: "string" },
+                    stock_date: { type: "string", format: "date-time" },
+                    stock_Quantity: {  type: "integer" },
+                    stock_lote: { type: "string" },
+                    stock_date_entry: { type: "string", format: "date" },
+                    stock_expiration_date: { type: "string", format: "date" },
+                    ar_id: {  type: "integer" },
+                    ar_code: { type: "string" },
+                    wh_id: {  type: "integer" },
+                    id_sap_warehouse: { type: "string" }
+                }
             }
         }
     },
@@ -215,7 +234,8 @@ const swaggerDefinition = {
                 "lista_precios",
                 "oferta_ventas",
                 "almacenes",
-                "metodo_pago"
+                "metodo_pago",
+                "stock"
             ]
         }
     ]
